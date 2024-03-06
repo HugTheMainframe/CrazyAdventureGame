@@ -4,25 +4,26 @@ public class Adventure {
 
 
     public Adventure() {
+    this.newPlayer = new Player();
+    }
+
+    public boolean movePlayerNorth() {
+       return newPlayer.movePlayerNorth();
 
     }
 
-    public void movePlayerNorth() {
-       newPlayer.movePlayerNorth();
-    }
-
-    public void movePlayerSouth() {
-        newPlayer.movePlayerSouth();
+    public boolean movePlayerSouth() {
+        return newPlayer.movePlayerSouth();
 
     }
 
-    public void movePlayerEast() {
-        newPlayer.movePlayerEast();
+    public boolean movePlayerEast() {
+        return newPlayer.movePlayerEast();
 
     }
 
-    public void movePlayerWest() {
-        newPlayer.movePlayerWest();
+    public boolean movePlayerWest() {
+        return newPlayer.movePlayerWest();
 
     }
 

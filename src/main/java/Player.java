@@ -1,43 +1,46 @@
 public class Player {
 
-    private Maps playerPosition = new Maps();
+    private Maps playerPosition;
 
     public Player() {
-
+        this.playerPosition = new Maps();
     }
 
 
-    public void movePlayerNorth() {
-        if (playerPosition != null) {
+    public boolean movePlayerNorth() {
+        if (playerPosition.getCurrentRoom().getNorthConnection() != null) {
             playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getNorthConnection());
-        } else  {
-            playerPosition.getCurrentRoom();
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public void movePlayerSouth() {
-        if (playerPosition != null) {
+    public boolean movePlayerSouth() {
+        if (playerPosition.getCurrentRoom().getSouthConnection() != null) {
             playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getSouthConnection());
+            return true;
         } else {
-            playerPosition.getCurrentRoom();
+            return false;
         }
-
     }
 
-    public void movePlayerEast() {
-        if (playerPosition != null) {
+    public boolean movePlayerEast() {
+        if (playerPosition.getCurrentRoom().getEastConnection() != null) {
             playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getEastConnection());
+            return true;
         } else {
-            playerPosition.getCurrentRoom();
+            return false;
         }
 
     }
 
-    public void movePlayerWest() {
-        if (playerPosition != null) {
+    public boolean movePlayerWest() {
+        if (playerPosition.getCurrentRoom().getWestConnection() != null) {
             playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getWestConnection());
+            return true;
         } else {
-            playerPosition.getCurrentRoom();
+            return false;
         }
 
     }

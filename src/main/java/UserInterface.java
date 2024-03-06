@@ -93,27 +93,39 @@ public class UserInterface {
                     break;
 
                 case "north", "go north", "n":
-                    adventure.movePlayerNorth();
-                    System.out.println(adventure.getCurrentPlayerPosition());
+                    if (adventure.movePlayerNorth()) {
+                        System.out.println(adventure.getCurrentPlayerPosition());
+                    } else {
+                        System.out.println("cant go this way");
+                    }
                     break;
 
                 case "east", "go east", "e":
-                    adventure.movePlayerEast();
-                    System.out.println(adventure.getCurrentPlayerPosition());
+                    if (adventure.movePlayerEast()) {
+                    System.out.println(adventure.getCurrentPlayerPosition());}
+                    else {
+                        System.out.println("cant go this way");
+                    }
                     break;
 
                 case "south", "go south", "s":
-                    adventure.movePlayerSouth();
-                    System.out.println(adventure.getCurrentPlayerPosition());
+                    if(adventure.movePlayerSouth()){
+                    System.out.println(adventure.getCurrentPlayerPosition()); }
+                    else {
+                        System.out.println("cant go this way");
+                    }
                     break;
 
                 case "west", "go west", "w":
-                    adventure.movePlayerWest();
-                    System.out.println(adventure.getCurrentPlayerPosition());
+                    if(adventure.movePlayerWest()) {
+                    System.out.println(adventure.getCurrentPlayerPosition()); }
+                    else {
+                        System.out.println("cant go this way");
+                    }
                     break;
 
                 default:
-                    System.out.println("Can't go this way...");
+                    System.out.println("Invalid input. Please enter north, east, south or west or enter 'help' for instructions");
                     break;
 
             }
@@ -124,4 +136,15 @@ public class UserInterface {
                 "\nEnter \"look\" to get room information" +
                 "\nEnter \"exit\" to quit the game");
     }
+
+    public void exceptionNullHandling() {
+        try {
+
+
+        } catch (NullPointerException npe) {
+            System.out.println("Can't go this way...");
+        }
+    }
+
+
 }

@@ -57,6 +57,10 @@ public class Maps {
         return currentRoom;
     }
     public String roomNameAndDescription(){
-        return  currentRoom.getName() + currentRoom.getDescription();
+        if(currentRoom != null && currentRoom.getName() != null && currentRoom.getDescription() != null) {
+            return currentRoom.getName() + currentRoom.getDescription();
+        } else {
+            return "cannot go this way";
+        }
     }
 }
