@@ -27,13 +27,11 @@ public class UserInterface {
     }
 
     //Opretter en startGame metode
-    public void startGame(){
+    public void startGame() {
 
         //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
 
-        String helpinfo = "Enter north, east, south or west to navigate" +
-                "\nEnter \"look\" to get room information" +
-                "\nEnter \"exit\" to quit the game";
+        helpinfo();
         String wayBlocked = "Can't go this way...";
         String exit = "Exiting game...";
         String invalid = "Invalid user input. Please enter north, east, south or west";
@@ -41,10 +39,50 @@ public class UserInterface {
         String userInput = "";
         System.out.println(adventure.roomNameAndDescription());
 
-        while (!userInput.equalsIgnoreCase("exit")){
+        while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
-            adventure.movePlayer(userInput, helpinfo, wayBlocked,
-                    exit, invalid);
+
+            String userInput = "";
+
+            switch (userInput) {
+
+                case "look", "l":
+                    roomNameAndDescription();
+                    break;
+
+                case "help", "h":
+                    helpInfo();
+                    break;
+
+                case "exit", "exi":
+                    exit;
+                    break;
+
+                case "north", "go north", "n":
+                    movePlayerNorth();
+                    break;
+
+                case "east", "go east", "e":
+                    movePlayerEast();
+                    break;
+
+                case "south", "go south", "s":
+                    movePlayerSouth();
+                    break;
+
+                case "west", "go west", "w":
+                    movePlayerWest();
+                    break;
+
+                default:
+                    System.out.println("Can't go this way...");
+
+            }
         }
+    }
+    public void helpInfo () {
+       System.out.println("Enter north, east, south or west to navigate" +
+                "\nEnter \"look\" to get room information" +
+                "\nEnter \"exit\" to quit the game");
     }
 }
