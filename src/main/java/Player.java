@@ -1,9 +1,8 @@
 public class Player {
 
-    private Maps playerPosition;
+    private Maps playerPosition = new Maps();
 
-    public Player(Maps initialPosition) {
-    this.playerPosition = initialPosition;
+    public Player() {
 
     }
 

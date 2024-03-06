@@ -9,7 +9,6 @@ public class Maps {
     Rooms room7;
     Rooms room8;
     Rooms room9;
-    private String roomNameAndDescritption;
 
     public Maps() {
         room1 = new Rooms("\"Dungeon\": ", "Dark place where light is dim");
@@ -48,9 +47,7 @@ public class Maps {
 
         room9.setNorthConnection(room6);
         room9.setWestConnection(room8);
-
         currentRoom = room1;
-        roomNameAndDescritption = currentRoom.getName() + currentRoom.getDescription();
     }
 
     public void setCurrentRoom(Rooms currentRoom){
@@ -60,7 +57,6 @@ public class Maps {
         return currentRoom;
     }
     public String roomNameAndDescription(){
-        return roomNameAndDescritption;
-
+        return  currentRoom.getName() + currentRoom.getDescription();
     }
 }
