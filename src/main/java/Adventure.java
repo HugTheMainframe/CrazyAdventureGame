@@ -8,11 +8,10 @@ public class Adventure {
     Rooms room7;
     Rooms room8;
     Rooms room9;
-
     private Rooms currentRoom;
 
     //Constructor is set to room1 for the starting point
-    public Adventure(){
+    public Adventure() {
         room1 = new Rooms("\"Dungeon\": " , "Dark place where light is dim");
         room2 = new Rooms("\"Prison\": " , "Dark place where light is dim");
         room3 = new Rooms("\"Cave\": " , "Dark place where light is dim");
@@ -56,7 +55,6 @@ public class Adventure {
     //Metoden tager parameteren String userinput, som bruges til at tage brugerinput og skifte mellem hver case alt efter hvad brugeren indtaster.
 
     public void movePlayer (String userInput, String helpInformation, String wayBlocked, String exit, String invalid) {
-
 
             if(userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
                     || userInput.equalsIgnoreCase("go north")){
@@ -162,8 +160,11 @@ public class Adventure {
     public String roomNameAndDescription(){
         return currentRoom.getName() + currentRoom.getDescription();
     }
-//    public Rooms getRoom(){
-//        return currentRoom
-//    }
 
+    public Rooms getCurrentRoom(){
+        return currentRoom;
+    }
+    public void setCurrentRoom(Rooms currentRoom){
+        this.currentRoom = currentRoom;
+    }
 }

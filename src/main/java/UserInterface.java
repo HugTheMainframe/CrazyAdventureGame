@@ -1,16 +1,19 @@
+
+import java.io.*;
 import java.util.Scanner;
 
 public class UserInterface {
     //Opretter Adventure klasse objekt og Scanner objekt
     Adventure adventure = new Adventure();
     Scanner input = new Scanner(System.in);
-    String userInput = "";
-    int sentinel = 2;
 
-    public void menu() {
+    public UserInterface() throws IOException {
+    }
+
+    public void menu() throws IOException {
         System.out.println("*** Welcome to the Adventure Game! ***\n");
         System.out.println("1. NEW GAME \n2. EXIT");
-
+        int sentinel = 2;
         int userInput = Integer.parseInt(input.nextLine());
 
         while (userInput != sentinel) {
@@ -27,8 +30,33 @@ public class UserInterface {
     }
 
     //Opretter en startGame metode
-    public void startGame(){
-
+    public void startGame() throws IOException {
+        //reading the file
+        BufferedReader readCurrentRoom = new BufferedReader(new FileReader("saveOfCurrentRoom.txt"));
+        //saving the readed text to a string
+        String save = readCurrentRoom.readLine();
+        System.out.println(save);
+        readCurrentRoom.close();
+        //reading a line in the file and checking for it to be equal to room1, room2 etc...
+        if (save.equals("\"Dungeon\": ")){
+            System.out.println("Starting new game");
+        } else if (adventure.room2.getName().equals(save)){
+            adventure.setCurrentRoom(adventure.room2);
+        } else if (adventure.room3.getName().equals(save)){
+            adventure.setCurrentRoom(adventure.room3);
+        } else if (adventure.room4.getName().equals(save)){
+            adventure.setCurrentRoom(adventure.room4);
+        } else if (adventure.room5.getName().equals(save)){
+            adventure.setCurrentRoom(adventure.room5);
+        } else if (adventure.room6.getName().equals(save)){
+            adventure.setCurrentRoom(adventure.room6);
+        } else if (adventure.room7.getName().equals(save)){
+            adventure.setCurrentRoom(adventure.room7);
+        } else if (adventure.room8.getName().equals(save)){
+            adventure.setCurrentRoom(adventure.room8);
+        } else {
+            adventure.setCurrentRoom(adventure.room9);
+        }
         //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
 
         String helpinfo = "Enter north, east, south or west to navigate" +
@@ -45,6 +73,16 @@ public class UserInterface {
             userInput = input.nextLine();
             adventure.movePlayer(userInput, helpinfo, wayBlocked,
                     exit, invalid);
+
+
+            //creating and writing to a file(txt) to put in the last room we were in(getName)
+            //now we need to read this file and make currentRoom equal to the name of the room
+            if (userInput.equalsIgnoreCase("exit")){
+                System.out.println(adventure.getCurrentRoom().getName());
+                BufferedWriter saveCurrentRoom = new BufferedWriter(new FileWriter("saveOfCurrentRoom.txt"));
+                saveCurrentRoom.write(adventure.getCurrentRoom().getName());
+                saveCurrentRoom.close();
+            }
         }
     }
 }
