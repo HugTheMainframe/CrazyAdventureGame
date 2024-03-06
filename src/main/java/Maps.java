@@ -9,9 +9,10 @@ public class Maps {
     Rooms room7;
     Rooms room8;
     Rooms room9;
+    private String roomNameAndDescritption;
 
-    public Maps(){
-        room1 = new Rooms("\"Dungeon\": " , "Dark place where light is dim");
+    public Maps() {
+        room1 = new Rooms("\"Dungeon\": ", "Dark place where light is dim");
         room2 = new Rooms("\"Prison\": " , "Dark place where light is dim");
         room3 = new Rooms("\"Cave\": " , "Dark place where light is dim");
         room4 = new Rooms("\"Forest\": " , "Dark place where light is dim");
@@ -49,6 +50,7 @@ public class Maps {
         room9.setWestConnection(room8);
 
         currentRoom = room1;
+        roomNameAndDescritption = currentRoom.getName() + currentRoom.getDescription();
     }
 
     public void setCurrentRoom(Rooms currentRoom){
@@ -58,6 +60,7 @@ public class Maps {
         return currentRoom;
     }
     public String roomNameAndDescription(){
-        return currentRoom.getName() + currentRoom.getDescription();
+        return roomNameAndDescritption;
+
     }
 }

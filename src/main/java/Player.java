@@ -1,42 +1,50 @@
 public class Player {
 
-    private Maps currentRoom;
+    private Maps playerPosition;
 
-    public Player() {
+    public Player(Maps initialPosition) {
+    this.playerPosition = initialPosition;
 
     }
 
 
     public void movePlayerNorth() {
-        if (currentRoom != null) {
-            currentRoom = currentRoom.getNorthConnection();
+        if (playerPosition != null) {
+            playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getNorthConnection());
+        } else  {
+            playerPosition.getCurrentRoom();
         }
     }
 
     public void movePlayerSouth() {
-        if (currentRoom != null) {
-            currentRoom = currentRoom.getSouthConnection();
+        if (playerPosition != null) {
+            playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getSouthConnection());
+        } else {
+            playerPosition.getCurrentRoom();
         }
 
     }
 
     public void movePlayerEast() {
-        if (currentRoom != null) {
-            currentRoom = currentRoom.getEastConnection();
+        if (playerPosition != null) {
+            playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getEastConnection());
+        } else {
+            playerPosition.getCurrentRoom();
         }
 
     }
 
     public void movePlayerWest() {
-        if (currentRoom != null) {
-            currentRoom = currentRoom.getWestConnection();
-
+        if (playerPosition != null) {
+            playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getWestConnection());
+        } else {
+            playerPosition.getCurrentRoom();
         }
 
     }
 
-    public void getCurrentPlayerPosition() {
-        return currentRoom;
+    public String getCurrentPlayerPosition() {
+        return playerPosition.roomNameAndDescription();
 
     }
 
