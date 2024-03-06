@@ -59,9 +59,7 @@ public class UserInterface {
         }
         //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
 
-        String helpinfo = "Enter north, east, south or west to navigate" +
-                "\nEnter \"look\" to get room information" +
-                "\nEnter \"exit\" to quit the game";
+        helpInfo();
         String wayBlocked = "Can't go this way...";
         String exit = "Exiting game...";
         String invalid = "Invalid user input. Please enter north, east, south or west";
@@ -69,11 +67,10 @@ public class UserInterface {
         String userInput = "";
         System.out.println(adventure.roomNameAndDescription());
 
-        while (!userInput.equalsIgnoreCase("exit")){
+        while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
-            adventure.movePlayer(userInput, helpinfo, wayBlocked,
-                    exit, invalid);
 
+            String userInput = "";
 
             //creating and writing to a file(txt) to put in the last room we were in(getName)
             //now we need to read this file and make currentRoom equal to the name of the room
@@ -83,6 +80,46 @@ public class UserInterface {
                 saveCurrentRoom.write(adventure.getCurrentRoom().getName());
                 saveCurrentRoom.close();
             }
+
+            switch (userInput) {
+
+                case "look", "l":
+                    roomNameAndDescription();
+                    break;
+
+                case "help", "h":
+                    helpInfo();
+                    break;
+
+                case "exit", "exi":
+                    exit;
+                    break;
+
+                case "north", "go north", "n":
+                    movePlayerNorth();
+                    break;
+
+                case "east", "go east", "e":
+                    movePlayerEast();
+                    break;
+
+                case "south", "go south", "s":
+                    movePlayerSouth();
+                    break;
+
+                case "west", "go west", "w":
+                    movePlayerWest();
+                    break;
+
+                default:
+                    System.out.println("Can't go this way...");
+
+            }
         }
+    }
+    public void helpInfo () {
+       System.out.println("Enter north, east, south or west to navigate" +
+                "\nEnter \"look\" to get room information" +
+                "\nEnter \"exit\" to quit the game");
     }
 }
