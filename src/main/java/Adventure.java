@@ -8,9 +8,10 @@ public class Adventure {
 
     public void movePlayer (String userInput, String helpInformation, String wayBlocked, String exit, String invalid) {
 
+
             if(userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
                     || userInput.equalsIgnoreCase("go north")){
-                if (map.getCurrentRoom().getNorthConnection() != null) {
+                if (currentRoom.getNorthConnection() != null) {
                     currentRoom = currentRoom.getNorthConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
