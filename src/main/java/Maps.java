@@ -88,15 +88,21 @@ public class Maps {
         room9.setNorthConnection(room6);
         room9.setWestConnection(room8);
         currentRoom = room1;
+
+        room1.addItemToRoom("Sword", "A rusty old sword");
+        room2.addItemToRoom("Lamp", "A golden lamp");
+        room3.addItemToRoom("Dagger", "A sharp letter opener");
     }
 
     public void setCurrentRoom(Rooms currentRoom){
         this.currentRoom = currentRoom;
     }
+
+
     public Rooms getCurrentRoom(){
         return currentRoom;
     }
     public String roomNameAndDescription(){
-            return currentRoom.getName() + currentRoom.getDescription();
+            return currentRoom.getName() + currentRoom.getDescription() + currentRoom.getItemsInRoom();
     }
 }

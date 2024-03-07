@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Rooms {
 
     //Declaring the room attributes
@@ -7,6 +9,8 @@ public class Rooms {
     private Rooms eastConnection;
     private Rooms southConnection;
     private Rooms westConnection;
+
+    private ArrayList<Items> itemsInRoom;
 
 
     //Setting up the constructor for the rooms
@@ -18,6 +22,8 @@ public class Rooms {
         eastConnection = null;
         southConnection = null;
         westConnection = null;
+
+        this.itemsInRoom = new ArrayList<>();
     }
 
     //Getter and setter methods
@@ -59,6 +65,19 @@ public class Rooms {
 
     public void setWestConnection(Rooms westConnection) {
         this.westConnection = westConnection;
+    }
+
+    public void addItemToRoom(String itemName, String itemDescription) {
+        itemsInRoom.add(new Items(itemName, itemDescription));
+    }
+
+    public String getItemsInRoom() {
+        String result = "";
+        for(Items items : itemsInRoom ) {
+            if(items != null) {
+                result += itemsInRoom.toString();
+            }
+        } return result;
     }
 
 
