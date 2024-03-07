@@ -27,4 +27,12 @@ public class Items {
     public void setName(String name) {
         this.name = name;
     }
+
+
+    @Override
+    public String toString() {
+        String result = "";
+        result = getName() + " " + getDescription();
+        return result;
+    }
 }

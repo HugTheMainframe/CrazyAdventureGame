@@ -28,7 +28,7 @@ public class Adventure {
     }
 
     public String getCurrentPlayerPosition() {
-        return newPlayer.getCurrentPlayerPosition();
+        return newPlayer.getCurrentPlayerPosition().toString();
 
     }
 

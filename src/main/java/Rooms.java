@@ -75,9 +75,9 @@ public class Rooms {
         String result = "";
         for(Items items : itemsInRoom ) {
             if(items != null) {
-                result += itemsInRoom.toString();
+                result += items.toString();
             }
-        } return result;
+        } return result.toString().trim();
     }
 
 
