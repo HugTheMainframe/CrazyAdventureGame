@@ -48,8 +48,30 @@ public class Player {
         return playerPosition.getCurrentRoom().getEastConnection() == null;
     }
 
-    public ArrayList<Items> pickUpItem(String itemName){
-        return playerPosition.pickUpItem(itemName);
+
+    public ArrayList<Items> pickUpItem(String name){
+        ArrayList<Items> itemsCopy = new ArrayList<>(playerPosition.getCurrentRoom().getItemsInRoom());
+        for (Items item : itemsCopy){
+            if(item.getItemName().equalsIgnoreCase(name)){
+                playerInventory.add(item);
+                playerPosition.getCurrentRoom().getItemsInRoom().remove(item);
+
+                return playerInventory;
+            }
+        }
+        return playerInventory;
     }
 
+    public String printInventory() {
+        String result = "";
+        for (Items item : playerInventory) {
+            if (item != null) {
+                result += item.toString();
+            }
+        } return result;
+    }
+
+
 }
+
+

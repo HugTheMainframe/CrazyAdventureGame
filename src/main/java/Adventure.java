@@ -53,4 +53,8 @@ public class Adventure {
         return newPlayer.pickUpItem(itemName);
     }
 
+    public String printInventory () {
+        return newPlayer.printInventory();
+    }
+
 }

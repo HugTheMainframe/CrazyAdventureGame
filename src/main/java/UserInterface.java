@@ -81,21 +81,26 @@ public class UserInterface {
 //            }
 
             switch (userInput) {
-
+            //lav ny case med seeInventory og ryk metoderne ind i player
                 case "look", "l":
                     System.out.println(adventure.getCurrentPlayerPosition());
+                    break;
 
-                    String newinput = input.nextLine();
-                    ArrayList<Items> inventory = adventure.pickUpItem(newinput);
+                case "inv", "i", "inventory":
+                    System.out.println(adventure.printInventory());
 
-                    newinput = input.nextLine();
-                    if(newinput.equalsIgnoreCase("inv")) {
-                        System.out.println("see inventory: ");
+                    break;
 
-                    for (int i = 0; i < inventory.size(); i++) {
-                        System.out.println(inventory.get(i).getItemName() + inventory.get(i).getDescription());
-                    }
-                    }
+                case "drop", "d":
+                    //ikke implementeret endnu
+                    break;
+
+                case "pick up", "pick", "p":
+                    System.out.println("Enter the name of the item you would like to pick up");
+                    String newInput = input.nextLine();
+                    adventure.pickUpItem(newInput);
+                    System.out.println("you picked up " + newInput); //implementer itemName);
+
                     break;
 
                 case "help", "h":

@@ -109,7 +109,9 @@ public class Maps {
             return currentRoom.getName() + currentRoom.getDescription() + "\n" + currentRoom.getItemsInRoom();
     }
 
-    public ArrayList<Items> pickUpItem(String name){
-        return currentRoom.pickUpItem(name);
-    }
+//    public ArrayList<Items> pickUpItem(String name){
+//        return currentRoom.pickUpItem(name);
+//    }
+
+    
 }

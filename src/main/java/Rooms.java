@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Rooms {
 
@@ -70,7 +71,13 @@ public class Rooms {
         itemsInRoom.add(new Items(itemName, itemDescription));
     }
 
-    public String getItemsInRoom() {
+    public ArrayList<Items> getItemsInRoom () {
+        return  itemsInRoom;
+    }
+
+
+
+    public String printItemsInRoom() {
         String result = "";
         for(Items items : itemsInRoom ) {
             if(items != null) {
@@ -79,15 +86,5 @@ public class Rooms {
         } return result.toString().trim();
     }
 
-    public ArrayList<Items> pickUpItem(String name){
-        ArrayList<Items> newItem = new ArrayList<>();
-        for (Items item : itemsInRoom){
-            if(item.getItemName().equalsIgnoreCase(name)){
-                newItem.add(item);
-                itemsInRoom.remove(item);
-                return newItem;
-            }
-        }
-        return newItem;
-    }
+
 }
