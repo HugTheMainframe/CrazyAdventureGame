@@ -7,28 +7,44 @@ public class Adventure {
     this.newPlayer = new Player();
     }
 
-    public boolean movePlayerNorth() {
-       return newPlayer.movePlayerNorth();
+    public void movePlayerNorth() {
+       newPlayer.movePlayerNorth();
 
     }
 
-    public boolean movePlayerSouth() {
-        return newPlayer.movePlayerSouth();
+    public void movePlayerSouth() {
+        newPlayer.movePlayerSouth();
 
     }
 
-    public boolean movePlayerEast() {
-        return newPlayer.movePlayerEast();
+    public void movePlayerEast() {
+        newPlayer.movePlayerEast();
 
     }
 
-    public boolean movePlayerWest() {
-        return newPlayer.movePlayerWest();
+    public void movePlayerWest() {
+        newPlayer.movePlayerWest();
 
     }
 
     public String getCurrentPlayerPosition() {
         return newPlayer.getCurrentPlayerPosition();
 
+    }
+
+    public boolean isSouthConnectionNull() {
+        return newPlayer.isSouthConnectionNull();
+    }
+
+    public boolean isNorthConnectionNull() {
+        return newPlayer.isNorthConnectionNull();
+    }
+
+    public boolean isWestConnectionNull() {
+        return newPlayer.isWestConnectionNull();
+    }
+
+    public boolean isEastConnectionNull() {
+        return newPlayer.isEastConnectionNull();
     }
 }

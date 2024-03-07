@@ -7,47 +7,46 @@ public class Player {
     }
 
 
-    public boolean movePlayerNorth() {
-        if (playerPosition.getCurrentRoom().getNorthConnection() != null) {
-            playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getNorthConnection());
-            return true;
-        } else {
-            return false;
-        }
+    public void movePlayerNorth() {
+        playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getNorthConnection());
     }
 
-    public boolean movePlayerSouth() {
-        if (playerPosition.getCurrentRoom().getSouthConnection() != null) {
-            playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getSouthConnection());
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean movePlayerEast() {
-        if (playerPosition.getCurrentRoom().getEastConnection() != null) {
-            playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getEastConnection());
-            return true;
-        } else {
-            return false;
-        }
+    public void movePlayerSouth() {
+        playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getSouthConnection());
 
     }
 
-    public boolean movePlayerWest() {
-        if (playerPosition.getCurrentRoom().getWestConnection() != null) {
-            playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getWestConnection());
-            return true;
-        } else {
-            return false;
-        }
+    public void movePlayerEast() {
+        playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getEastConnection());
+    }
 
+    public void movePlayerWest() {
+        playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getWestConnection());
     }
 
     public String getCurrentPlayerPosition() {
         return playerPosition.roomNameAndDescription();
+    }
 
+//    public boolean hasPlayerBeenInRoom() {
+//        return playerPosition.getCurrentRoom().getHasBeenInRoom();
+//
+//    }
+
+    public boolean isNorthConnectionNull() {
+        return playerPosition.getCurrentRoom().getNorthConnection() == null;
+    }
+
+    public boolean isSouthConnectionNull() {
+        return playerPosition.getCurrentRoom().getSouthConnection() == null;
+    }
+
+    public boolean isWestConnectionNull() {
+        return playerPosition.getCurrentRoom().getWestConnection() == null;
+    }
+
+    public boolean isEastConnectionNull() {
+        return playerPosition.getCurrentRoom().getEastConnection() == null;
     }
 
 

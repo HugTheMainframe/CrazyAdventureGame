@@ -93,7 +93,8 @@ public class UserInterface {
                     break;
 
                 case "north", "go north", "n":
-                    if (adventure.movePlayerNorth()) {
+                    if (!adventure.isNorthConnectionNull()) {
+                        adventure.movePlayerNorth();
                         System.out.println(adventure.getCurrentPlayerPosition());
                     } else {
                         System.out.println(wayBlocked);
@@ -101,7 +102,8 @@ public class UserInterface {
                     break;
 
                 case "east", "go east", "e":
-                    if (adventure.movePlayerEast()) {
+                    if (!adventure.isEastConnectionNull()) {
+                        adventure.movePlayerEast();
                     System.out.println(adventure.getCurrentPlayerPosition());}
                     else {
                         System.out.println(wayBlocked);
@@ -109,7 +111,8 @@ public class UserInterface {
                     break;
 
                 case "south", "go south", "s":
-                    if(adventure.movePlayerSouth()){
+                    if(!adventure.isSouthConnectionNull()){
+                        adventure.movePlayerSouth();
                     System.out.println(adventure.getCurrentPlayerPosition()); }
                     else {
                         System.out.println(wayBlocked);
@@ -117,7 +120,8 @@ public class UserInterface {
                     break;
 
                 case "west", "go west", "w":
-                    if(adventure.movePlayerWest()) {
+                    if(!adventure.isWestConnectionNull()) {
+                        adventure.movePlayerWest();
                     System.out.println(adventure.getCurrentPlayerPosition()); }
                     else {
                         System.out.println(wayBlocked);
