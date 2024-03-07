@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Adventure {
 
     private Player newPlayer;
@@ -6,7 +8,6 @@ public class Adventure {
     public Adventure() {
     this.newPlayer = new Player();
     }
-
     public void movePlayerNorth() {
        newPlayer.movePlayerNorth();
 
@@ -46,5 +47,9 @@ public class Adventure {
 
     public boolean isEastConnectionNull() {
         return newPlayer.isEastConnectionNull();
+    }
+
+    public void pickUpItem(String itemName){
+        newPlayer.pickUpItem(itemName);
     }
 }

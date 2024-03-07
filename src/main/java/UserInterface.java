@@ -86,6 +86,9 @@ public class UserInterface {
 
                 case "look", "l":
                     System.out.println(adventure.getCurrentPlayerPosition());
+                    String newinput = input.nextLine();
+                    adventure.pickUpItem(newinput);
+
                     break;
 
                 case "help", "h":

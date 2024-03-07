@@ -80,6 +80,12 @@ public class Rooms {
         } return result.toString().trim();
     }
 
-
-
+    public void pickUpItem(String name){
+        for (Items item : itemsInRoom){
+            if(item.getItemName().equalsIgnoreCase(name)){
+                itemsInRoom.remove(item);
+                break;
+            }
+        }
+    }
 }

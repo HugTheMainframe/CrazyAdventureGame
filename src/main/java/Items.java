@@ -16,7 +16,7 @@ public class Items {
         return description;
     }
 
-    public String getName() {
+    public String getItemName() {
         return name;
     }
 
@@ -28,11 +28,10 @@ public class Items {
         this.name = name;
     }
 
-
     @Override
-    public String toString() {
+    public String toString(){
         String result = "";
-        result = getName() + " " + getDescription();
+        result += "\n" + name + " " + description;
         return result;
     }
 }

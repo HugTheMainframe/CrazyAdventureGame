@@ -1,3 +1,5 @@
+
+
 public class Player {
 
     private Maps playerPosition;
@@ -28,11 +30,6 @@ public class Player {
         return playerPosition.roomNameAndDescription();
     }
 
-//    public boolean hasPlayerBeenInRoom() {
-//        return playerPosition.getCurrentRoom().getHasBeenInRoom();
-//
-//    }
-
     public boolean isNorthConnectionNull() {
         return playerPosition.getCurrentRoom().getNorthConnection() == null;
     }
@@ -49,5 +46,7 @@ public class Player {
         return playerPosition.getCurrentRoom().getEastConnection() == null;
     }
 
-
+    public void pickUpItem(String itemName){
+        playerPosition.pickUpItem(itemName);
+    }
 }

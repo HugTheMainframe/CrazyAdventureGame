@@ -92,6 +92,7 @@ public class Maps {
         room1.addItemToRoom("Sword", "A rusty old sword");
         room2.addItemToRoom("Lamp", "A golden lamp");
         room3.addItemToRoom("Dagger", "A sharp letter opener");
+
     }
 
     public void setCurrentRoom(Rooms currentRoom){
@@ -103,6 +104,10 @@ public class Maps {
         return currentRoom;
     }
     public String roomNameAndDescription(){
-            return currentRoom.getName() + currentRoom.getDescription() + currentRoom.getItemsInRoom();
+            return currentRoom.getName() + currentRoom.getDescription() + "\n" + currentRoom.getItemsInRoom();
+    }
+
+    public void pickUpItem(String name){
+        currentRoom.pickUpItem(name);
     }
 }
