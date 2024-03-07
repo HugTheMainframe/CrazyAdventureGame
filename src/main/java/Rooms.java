@@ -12,7 +12,6 @@ public class Rooms {
 
     private ArrayList<Items> itemsInRoom;
 
-
     //Setting up the constructor for the rooms
     public Rooms(String name, String description){
         this.name = name;
@@ -80,12 +79,15 @@ public class Rooms {
         } return result.toString().trim();
     }
 
-    public void pickUpItem(String name){
+    public ArrayList<Items> pickUpItem(String name){
+        ArrayList<Items> newItem = new ArrayList<>();
         for (Items item : itemsInRoom){
             if(item.getItemName().equalsIgnoreCase(name)){
+                newItem.add(item);
                 itemsInRoom.remove(item);
-                break;
+                return newItem;
             }
         }
+        return newItem;
     }
 }

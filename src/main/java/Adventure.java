@@ -49,7 +49,8 @@ public class Adventure {
         return newPlayer.isEastConnectionNull();
     }
 
-    public void pickUpItem(String itemName){
-        newPlayer.pickUpItem(itemName);
+    public ArrayList<Items> pickUpItem(String itemName){
+        return newPlayer.pickUpItem(itemName);
     }
+
 }

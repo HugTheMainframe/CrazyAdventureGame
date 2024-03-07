@@ -1,11 +1,13 @@
-
+import java.util.ArrayList;
 
 public class Player {
 
+    private ArrayList<Items> playerInventory;
     private Maps playerPosition;
 
     public Player() {
         this.playerPosition = new Maps();
+        this.playerInventory = new ArrayList<>();
     }
 
 
@@ -46,7 +48,8 @@ public class Player {
         return playerPosition.getCurrentRoom().getEastConnection() == null;
     }
 
-    public void pickUpItem(String itemName){
-        playerPosition.pickUpItem(itemName);
+    public ArrayList<Items> pickUpItem(String itemName){
+        return playerPosition.pickUpItem(itemName);
     }
+
 }

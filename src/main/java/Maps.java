@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Maps {
     private Rooms currentRoom;
     Rooms room1;
@@ -107,7 +109,7 @@ public class Maps {
             return currentRoom.getName() + currentRoom.getDescription() + "\n" + currentRoom.getItemsInRoom();
     }
 
-    public void pickUpItem(String name){
-        currentRoom.pickUpItem(name);
+    public ArrayList<Items> pickUpItem(String name){
+        return currentRoom.pickUpItem(name);
     }
 }

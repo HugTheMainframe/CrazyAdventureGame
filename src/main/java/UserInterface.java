@@ -1,5 +1,6 @@
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -70,9 +71,6 @@ public class UserInterface {
         while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
 
-
-
-
             //creating and writing to a file(txt) to put in the last room we were in(getName)
             //now we need to read this file and make currentRoom equal to the name of the room
 //            if (userInput.equalsIgnoreCase("exit")){
@@ -86,9 +84,18 @@ public class UserInterface {
 
                 case "look", "l":
                     System.out.println(adventure.getCurrentPlayerPosition());
-                    String newinput = input.nextLine();
-                    adventure.pickUpItem(newinput);
 
+                    String newinput = input.nextLine();
+                    ArrayList<Items> inventory = adventure.pickUpItem(newinput);
+
+                    newinput = input.nextLine();
+                    if(newinput.equalsIgnoreCase("inv")) {
+                        System.out.println("see inventory: ");
+
+                    for (int i = 0; i < inventory.size(); i++) {
+                        System.out.println(inventory.get(i).getItemName() + inventory.get(i).getDescription());
+                    }
+                    }
                     break;
 
                 case "help", "h":
