@@ -11,9 +11,15 @@ public class Maps {
     Rooms room9;
 
     public Maps() {
-        room1 = new Rooms("\"Dungeon\": ", "Dark place where light is dim");
-        room2 = new Rooms("\"Prison\": " , "Dark place where light is dim");
-        room3 = new Rooms("\"Cave\": " , "Dark place where light is dim");
+        room1 = new Rooms("\"Dungeon\": ", "On your way to the holy church a night,you fell down a hole\n" +
+                "Now only the light shall guide you out of this hell place\n" +
+                "The hole is a dark place where the room is just barely visible\n" +
+                "Do you wish to continue or just end your live? yes");
+        room2 = new Rooms("\"Prison\": " , "You enter a though a rusty cage door.\n" +
+                "The first thing you sense are the dreadfully smell of something rotten. Maybe it is human flesh...");
+        room3 = new Rooms("\"Cave\": " , "Sounds of bats and hollow scream hunt these long caves.\n" +
+                "A drawing of a 9 legged spider is on the stone wall to your left.\n" +
+                "Maybe it was a another unlucky wander like yourself... I should be careful here.");
         room4 = new Rooms("\"Forest\": " , "Dark place where light is dim");
         room5 = new Rooms("\"Creek\": " , "Dark place where light is dim");
         room6 = new Rooms("\"Sprawling City\": " , "Dark place where light is dim");
