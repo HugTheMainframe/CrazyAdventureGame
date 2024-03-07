@@ -62,6 +62,17 @@ public class Player {
         return playerInventory;
     }
 
+    public ArrayList<Items> dropItem(String name) {
+        ArrayList<Items> itemsCopy = new ArrayList<>(playerInventory);
+        for (Items item : itemsCopy) {
+            if(item.getItemName().equalsIgnoreCase(name)) {
+                playerPosition.getCurrentRoom().getItemsInRoom().add(item);
+                playerInventory.remove(item);
+                return playerInventory;
+            }
+        } return playerInventory;
+    }
+
     public String printInventory() {
         String result = "";
         for (Items item : playerInventory) {

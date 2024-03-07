@@ -92,7 +92,10 @@ public class UserInterface {
                     break;
 
                 case "drop", "d":
-                    //ikke implementeret endnu
+                    System.out.println("enter the name of the item you wish to drop");
+                    String newInput2 = input.nextLine();
+                    adventure.dropItem(newInput2);
+                    System.out.println("You dropped " + newInput2);
                     break;
 
                 case "pick up", "pick", "p":

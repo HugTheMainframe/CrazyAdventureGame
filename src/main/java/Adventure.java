@@ -57,4 +57,8 @@ public class Adventure {
         return newPlayer.printInventory();
     }
 
+    public ArrayList<Items> dropItem(String itemName) {
+        return newPlayer.dropItem(itemName);
+    }
+
 }
