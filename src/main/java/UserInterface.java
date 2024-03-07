@@ -96,7 +96,7 @@ public class UserInterface {
                     if (adventure.movePlayerNorth()) {
                         System.out.println(adventure.getCurrentPlayerPosition());
                     } else {
-                        System.out.println("cant go this way");
+                        System.out.println(wayBlocked);
                     }
                     break;
 
@@ -104,7 +104,7 @@ public class UserInterface {
                     if (adventure.movePlayerEast()) {
                     System.out.println(adventure.getCurrentPlayerPosition());}
                     else {
-                        System.out.println("cant go this way");
+                        System.out.println(wayBlocked);
                     }
                     break;
 
@@ -112,7 +112,7 @@ public class UserInterface {
                     if(adventure.movePlayerSouth()){
                     System.out.println(adventure.getCurrentPlayerPosition()); }
                     else {
-                        System.out.println("cant go this way");
+                        System.out.println(wayBlocked);
                     }
                     break;
 
@@ -120,12 +120,16 @@ public class UserInterface {
                     if(adventure.movePlayerWest()) {
                     System.out.println(adventure.getCurrentPlayerPosition()); }
                     else {
-                        System.out.println("cant go this way");
+                        System.out.println(wayBlocked);
                     }
                     break;
 
+                case "exit":
+                    System.out.println(exit);
+                    break;
+
                 default:
-                    System.out.println("Invalid input. Please enter north, east, south or west or enter 'help' for instructions");
+                    System.out.println(invalid);
                     break;
 
             }
@@ -136,15 +140,4 @@ public class UserInterface {
                 "\nEnter \"look\" to get room information" +
                 "\nEnter \"exit\" to quit the game");
     }
-
-    public void exceptionNullHandling() {
-        try {
-
-
-        } catch (NullPointerException npe) {
-            System.out.println("Can't go this way...");
-        }
-    }
-
-
 }

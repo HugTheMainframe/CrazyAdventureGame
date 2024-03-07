@@ -1,6 +1,6 @@
 public class Adventure {
 
-    private Player newPlayer = new Player();
+    private Player newPlayer;
 
 
     public Adventure() {
