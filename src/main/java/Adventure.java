@@ -61,4 +61,7 @@ public class Adventure {
         return newPlayer.dropItem(itemName);
     }
 
+    public Player getNewPlayer() {
+        return newPlayer;
+    }
 }

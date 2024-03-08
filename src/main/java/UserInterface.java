@@ -67,7 +67,8 @@ public class UserInterface {
 
         String userInput = "";
         System.out.println(adventure.getCurrentPlayerPosition());
-
+        //this will ensure that room1 is visited at start, and are under the sout so the real room1 name and description is printet.
+        adventure.getNewPlayer().getPlayerPosition().getCurrentRoom().hasBeenInRoom++;
         while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
 
@@ -160,6 +161,9 @@ public class UserInterface {
     public void helpInfo () {
        System.out.println("Enter north, east, south or west to navigate" +
                 "\nEnter \"look\" to get room information" +
-                "\nEnter \"exit\" to quit the game");
+                "\nEnter \"exit\" to quit the game" +
+                "\nEnter \"pick\" to pick up item\"" +
+                "\nEnter \"drop\" to drop item\"" +
+                "\nEnter \"inventory\" to view your items");
     }
 }

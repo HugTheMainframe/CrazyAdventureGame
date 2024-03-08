@@ -10,6 +10,7 @@ public class Rooms {
     private Rooms eastConnection;
     private Rooms southConnection;
     private Rooms westConnection;
+    int hasBeenInRoom;
 
     private ArrayList<Items> itemsInRoom;
 
@@ -24,6 +25,8 @@ public class Rooms {
         westConnection = null;
 
         this.itemsInRoom = new ArrayList<>();
+        //to check if player has been in room per room
+        hasBeenInRoom = 0;
     }
 
     //Getter and setter methods
@@ -33,6 +36,10 @@ public class Rooms {
 
     public String getDescription(){
         return description;
+    }
+    //used to set a new room description to say if player has been in room
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Rooms getNorthConnection() {

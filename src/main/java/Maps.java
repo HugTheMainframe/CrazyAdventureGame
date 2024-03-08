@@ -108,10 +108,4 @@ public class Maps {
     public String roomNameAndDescription(){
             return currentRoom.getName() + currentRoom.getDescription() + "\n" + currentRoom.printItemsInRoom();
     }
-
-//    public ArrayList<Items> pickUpItem(String name){
-//        return currentRoom.pickUpItem(name);
-//    }
-
-    
 }
