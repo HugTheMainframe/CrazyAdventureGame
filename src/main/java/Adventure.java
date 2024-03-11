@@ -12,25 +12,25 @@ public class Adventure {
 
     }
 
-    public String playerAction (String direction, String help, String wayBlocked) {
-
-        if(newPlayer.movePlayer(direction)) {
-            return "you have moved to " + newPlayer.getCurrentPlayerPosition();
-        } else if (direction.equalsIgnoreCase("help") || direction.equalsIgnoreCase("h")) {
-            return help;
-        } else {
-            return wayBlocked;
-        }
-
+    public String movePlayerNorth() {
+        return newPlayer.movePlayerNorth();
+    }
+    public String movePlayerSouth() {
+        return newPlayer.movePlayerSouth();
+    }
+    public String movePlayerEast() {
+        return newPlayer.movePlayerEast();
+    }
+    public String movePlayerWest() {
+        return newPlayer.movePlayerWest();
     }
 
-//    public String getCurrentPlayerPosition() {
-//        return newPlayer.getCurrentPlayerPosition().toString();
-//
-//    }
+    public String getCurrentPlayerPosition() {
+        return newPlayer.getCurrentPlayerPosition();
+    }
 
 
-    public ArrayList<Items> pickUpItem(String itemName){
+    public String pickUpItem(String itemName){
         return newPlayer.pickUpItem(itemName);
     }
 
@@ -38,7 +38,7 @@ public class Adventure {
         return newPlayer.printInventory();
     }
 
-    public ArrayList<Items> dropItem(String itemName) {
+    public String dropItem(String itemName) {
         return newPlayer.dropItem(itemName);
     }
 

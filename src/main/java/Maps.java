@@ -96,15 +96,9 @@ public class Maps {
 
     }
 
-    public void setCurrentRoom(Rooms currentRoom){
-        this.currentRoom = currentRoom;
-    }
-
-
     public Rooms getStartRoom(){
         return currentRoom;
     }
-    public String roomNameAndDescription(){
-            return currentRoom.getName() + currentRoom.getDescription() + "\n" + currentRoom.printItemsInRoom();
-    }
+
+
 }

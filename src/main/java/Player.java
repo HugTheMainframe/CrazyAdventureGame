@@ -13,29 +13,40 @@ public class Player {
 
     //                  **** Player movement and location methods ****
 
-
-    public boolean movePlayer (String direction) {
-        Rooms chosenRoom = switch (direction) {
-            case "north", "n", "go north" -> playerPosition.getNorthConnection();
-
-            case "south", "s", "go south" -> playerPosition.getSouthConnection();
-
-            case "west", "w", "go west" -> playerPosition.getWestConnection();
-
-            case "east", "e", "go east" -> playerPosition.getEastConnection();
-
-            default ->
-                null;
-        };
-
-        if (chosenRoom != null) {
-            playerPosition = chosenRoom;
+    public String movePlayerNorth() {
+        if(playerPosition.getNorthConnection() != null) {
+            playerPosition = playerPosition.getNorthConnection();
             hasPlayerBeenInRoom();
-            return true;
-        } else {
-            return false;
+            return getCurrentPlayerPosition();
         }
+        return "Cannot go this way";
     }
+    public String movePlayerSouth() {
+        if(playerPosition.getSouthConnection() != null) {
+            playerPosition = playerPosition.getSouthConnection();
+            hasPlayerBeenInRoom();
+            return getCurrentPlayerPosition();
+        }
+        return "Cannot go this way";
+    }
+    public String movePlayerEast() {
+        if(playerPosition.getEastConnection() != null) {
+            playerPosition = playerPosition.getEastConnection();
+            hasPlayerBeenInRoom();
+            return getCurrentPlayerPosition();
+        }
+        return "Cannot go this way";
+    }
+    public String movePlayerWest() {
+        if(playerPosition.getWestConnection() != null) {
+            playerPosition = playerPosition.getWestConnection();
+            hasPlayerBeenInRoom();
+            return getCurrentPlayerPosition();
+        }
+        return "Cannot go this way";
+    }
+
+//
 
     //if user goes a direction it will change the hasBeenInRoom at rooms to 1 or more. the code below
     //is to change it value. it will check if count has been incremented which is hasnt been first time going to the room
@@ -51,36 +62,36 @@ public class Player {
     }
 
     public String getCurrentPlayerPosition() {
-        return playerPosition.getName() + playerPosition.getDescription() + playerPosition.printItemsInRoom(); }
+        return playerPosition.getName() + playerPosition.getDescription() + "\n" + playerPosition.printItemsInRoom(); }
 
 
 
     //                  **** Player inventory methods ****
 
 
-    public ArrayList<Items> pickUpItem(String name){
+    public String pickUpItem(String name){
         ArrayList<Items> itemsCopy = new ArrayList<>(playerPosition.getItemsInRoom());
         for (Items item : itemsCopy){
             if(item.getItemName().equalsIgnoreCase(name)){
                 playerInventory.add(item);
                 playerPosition.removeIteminRoom(item);
 
-                return playerInventory;
+                return "you picked up " + item.getItemName();
             }
         }
-        return playerInventory;
+        return "you didn't pick up anything";
     }
 
-    public ArrayList<Items> dropItem(String name) {
+    public String dropItem(String name) {
         ArrayList<Items> itemsCopy = new ArrayList<>(playerInventory);
         for (Items item : itemsCopy) {
             if(item.getItemName().equalsIgnoreCase(name)) {
                 playerPosition.addItemToRoom(item);
                 playerInventory.remove(item);
-                return playerInventory;
+                return "you dropped " + item.getItemName();
 
             }
-        } return playerInventory;
+        } return "You didn't drop anything";
     }
 
     public String printInventory() {
