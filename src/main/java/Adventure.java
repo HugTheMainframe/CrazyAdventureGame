@@ -3,51 +3,32 @@ import java.util.ArrayList;
 public class Adventure {
 
     private Player newPlayer;
+    private Maps map;
 
 
     public Adventure() {
-    this.newPlayer = new Player();
-    }
-    public void movePlayerNorth() {
-       newPlayer.movePlayerNorth();
+        this.map = new Maps();
+        this.newPlayer = new Player(map.getStartRoom());
 
     }
 
-    public void movePlayerSouth() {
-        newPlayer.movePlayerSouth();
+    public String playerAction (String direction, String help, String wayBlocked) {
+
+        if(newPlayer.movePlayer(direction)) {
+            return "you have moved to " + newPlayer.getCurrentPlayerPosition();
+        } else if (direction.equalsIgnoreCase("help") || direction.equalsIgnoreCase("h")) {
+            return help;
+        } else {
+            return wayBlocked;
+        }
 
     }
 
-    public void movePlayerEast() {
-        newPlayer.movePlayerEast();
+//    public String getCurrentPlayerPosition() {
+//        return newPlayer.getCurrentPlayerPosition().toString();
+//
+//    }
 
-    }
-
-    public void movePlayerWest() {
-        newPlayer.movePlayerWest();
-
-    }
-
-    public String getCurrentPlayerPosition() {
-        return newPlayer.getCurrentPlayerPosition().toString();
-
-    }
-
-    public boolean isSouthConnectionNull() {
-        return newPlayer.isSouthConnectionNull();
-    }
-
-    public boolean isNorthConnectionNull() {
-        return newPlayer.isNorthConnectionNull();
-    }
-
-    public boolean isWestConnectionNull() {
-        return newPlayer.isWestConnectionNull();
-    }
-
-    public boolean isEastConnectionNull() {
-        return newPlayer.isEastConnectionNull();
-    }
 
     public ArrayList<Items> pickUpItem(String itemName){
         return newPlayer.pickUpItem(itemName);

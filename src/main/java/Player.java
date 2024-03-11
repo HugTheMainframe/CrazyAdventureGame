@@ -3,101 +3,67 @@ import java.util.ArrayList;
 public class Player {
 
     private ArrayList<Items> playerInventory;
-    private Maps playerPosition;
+    private Rooms playerPosition;
 
-
-
-    public Player() {
-        this.playerPosition = new Maps();
+    public Player(Rooms startingRoom) {
         this.playerInventory = new ArrayList<>();
+        this.playerPosition = startingRoom;
     }
 
 
-    public void movePlayerNorth() {
-        playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getNorthConnection());
-        //if user goes a direction it will change the hasBeenInRoom at rooms to 1 or more. the code below
-        //is to change it value. it will check if count has been incremented which is hasnt been first time going to the room
-        //after player has been to the room it increments count by 1, and next time player visit room it will run the if condition
-        int count = playerPosition.getCurrentRoom().hasBeenInRoom;
-        if (count > 0){
-            //to change the description af the room per room
-            playerPosition.getCurrentRoom().setDescription("You have been here.");
+    //                  **** Player movement and location methods ****
+
+
+    public boolean movePlayer (String direction) {
+        Rooms chosenRoom = switch (direction) {
+            case "north", "n", "go north" -> playerPosition.getNorthConnection();
+
+            case "south", "s", "go south" -> playerPosition.getSouthConnection();
+
+            case "west", "w", "go west" -> playerPosition.getWestConnection();
+
+            case "east", "e", "go east" -> playerPosition.getEastConnection();
+
+            default ->
+                null;
+        };
+
+        if (chosenRoom != null) {
+            playerPosition = chosenRoom;
+            hasPlayerBeenInRoom();
+            return true;
+        } else {
+            return false;
         }
-        playerPosition.getCurrentRoom().hasBeenInRoom += 1;
     }
 
-    public void movePlayerSouth() {
-        playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getSouthConnection());
-        //if user goes a direction it will change the hasBeenInRoom at rooms to 1 or more. the code below
-        //is to change it value. it will check if count has been incremented which is hasnt been first time going to the room
-        //after player has been to the room it increments count by 1, and next time player visit room it will run the if condition
-        int count = playerPosition.getCurrentRoom().hasBeenInRoom;
-        if (count > 0){
-            //to change the description af the room per room
-            playerPosition.getCurrentRoom().setDescription("You have been here.");
-        }
-        playerPosition.getCurrentRoom().hasBeenInRoom += 1;
+    //if user goes a direction it will change the hasBeenInRoom at rooms to 1 or more. the code below
+    //is to change it value. it will check if count has been incremented which is hasnt been first time going to the room
+    //after player has been to the room it increments count by 1, and next time player visit room it will run the if condition
 
-    }
-
-    public void movePlayerEast() {
-        playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getEastConnection());
-        //if user goes a direction it will change the hasBeenInRoom at rooms to 1 or more. the code below
-        //is to change it value. it will check if count has been incremented which is hasnt been first time going to the room
-        //after player has been to the room it increments count by 1, and next time player visit room it will run the if condition
-        int count = playerPosition.getCurrentRoom().hasBeenInRoom;
-        if (count > 0){
+    public void hasPlayerBeenInRoom() {
+        if (playerPosition.hasBeenInRoom > 0){
             //to change the description af the room per room
-            playerPosition.getCurrentRoom().setDescription("You have been here.");
+            playerPosition.setDescription("You have been here.");
         }
-        playerPosition.getCurrentRoom().hasBeenInRoom += 1;
-    }
-
-    public void movePlayerWest() {
-        playerPosition.setCurrentRoom(playerPosition.getCurrentRoom().getWestConnection());
-        //if user goes a direction it will change the hasBeenInRoom at rooms to 1 or more. the code below
-        //is to change it value. it will check if count has been incremented which is hasnt been first time going to the room
-        //after player has been to the room it increments count by 1, and next time player visit room it will run the if condition
-        int count = playerPosition.getCurrentRoom().hasBeenInRoom;
-        if (count > 0){
-            //to change the description af the room per room
-            playerPosition.getCurrentRoom().setDescription("You have been here.");
-        }
-        playerPosition.getCurrentRoom().hasBeenInRoom += 1;
+        playerPosition.hasBeenInRoom += 1;
 
     }
 
     public String getCurrentPlayerPosition() {
-        return playerPosition.roomNameAndDescription();
-    }
+        return playerPosition.getName() + playerPosition.getDescription() + playerPosition.printItemsInRoom(); }
 
-    public Maps getPlayerPosition() {
-        return playerPosition;
-    }
 
-    public boolean isNorthConnectionNull() {
-        return playerPosition.getCurrentRoom().getNorthConnection() == null;
-    }
 
-    public boolean isSouthConnectionNull() {
-        return playerPosition.getCurrentRoom().getSouthConnection() == null;
-    }
-
-    public boolean isWestConnectionNull() {
-        return playerPosition.getCurrentRoom().getWestConnection() == null;
-    }
-
-    public boolean isEastConnectionNull() {
-        return playerPosition.getCurrentRoom().getEastConnection() == null;
-    }
+    //                  **** Player inventory methods ****
 
 
     public ArrayList<Items> pickUpItem(String name){
-        ArrayList<Items> itemsCopy = new ArrayList<>(playerPosition.getCurrentRoom().getItemsInRoom());
+        ArrayList<Items> itemsCopy = new ArrayList<>(playerPosition.getItemsInRoom());
         for (Items item : itemsCopy){
             if(item.getItemName().equalsIgnoreCase(name)){
                 playerInventory.add(item);
-                playerPosition.getCurrentRoom().getItemsInRoom().remove(item);
+                playerPosition.removeIteminRoom(item);
 
                 return playerInventory;
             }
@@ -109,9 +75,10 @@ public class Player {
         ArrayList<Items> itemsCopy = new ArrayList<>(playerInventory);
         for (Items item : itemsCopy) {
             if(item.getItemName().equalsIgnoreCase(name)) {
-                playerPosition.getCurrentRoom().getItemsInRoom().add(item);
+                playerPosition.addItemToRoom(item);
                 playerInventory.remove(item);
                 return playerInventory;
+
             }
         } return playerInventory;
     }
@@ -126,8 +93,11 @@ public class Player {
     }
 
 
-
-
 }
+
+
+
+
+
 
 

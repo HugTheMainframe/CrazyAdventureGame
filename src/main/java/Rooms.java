@@ -74,8 +74,16 @@ public class Rooms {
         this.westConnection = westConnection;
     }
 
-    public void addItemToRoom(String itemName, String itemDescription) {
-        itemsInRoom.add(new Items(itemName, itemDescription));
+
+    //Note to self: By adding a addIemToRoom, and removeItemInRoom we encapsulate the logic
+    //and adhere to the Law of Demeter by not directly accessing and modifying the Items class from the Player class.
+    //instead we call upon these methods in the player class when manipulating our player inventory.
+    public void addItemToRoom(Items item) {
+        itemsInRoom.add(item);
+    }
+
+    public void removeIteminRoom(Items item) {
+        itemsInRoom.remove(item);
     }
 
     public ArrayList<Items> getItemsInRoom () {
