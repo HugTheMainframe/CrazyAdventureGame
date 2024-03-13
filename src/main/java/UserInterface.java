@@ -32,7 +32,8 @@ public class UserInterface {
 
     //Opretter en startGame metode
     public void startGame() {
-
+        System.out.println(adventure.getCurrentPlayerPosition());
+        adventure.hasBeenInRoom();
         String exit = "Exiting game...";
 
         String userInput = "";
@@ -83,6 +84,7 @@ public class UserInterface {
                     break;
 
                 case "look", "l":
+                    System.out.println(adventure.getCurrentPlayerPosition());
                     break;
 
                 default:

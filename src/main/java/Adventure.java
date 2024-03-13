@@ -45,4 +45,8 @@ public class Adventure {
     public Player getNewPlayer() {
         return newPlayer;
     }
+
+    public void hasBeenInRoom(){
+        newPlayer.hasPlayerBeenInRoom();
+    }
 }

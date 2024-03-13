@@ -1,20 +1,18 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Rooms {
 
-    //Declaring the room attributes
     private String name;
     private String description;
     private Rooms northConnection;
     private Rooms eastConnection;
+    private boolean beenToEast = false;
     private Rooms southConnection;
     private Rooms westConnection;
     int hasBeenInRoom;
 
     private ArrayList<Items> itemsInRoom;
 
-    //Setting up the constructor for the rooms
     public Rooms(String name, String description){
         this.name = name;
         this.description = description;
@@ -25,7 +23,6 @@ public class Rooms {
         westConnection = null;
 
         this.itemsInRoom = new ArrayList<>();
-        //to check if player has been in room per room
         hasBeenInRoom = 0;
     }
 
@@ -64,6 +61,14 @@ public class Rooms {
 
     public void setEastConnection(Rooms eastConnection){
         this.eastConnection = eastConnection;
+    }
+
+    public void beenToEast() {
+        this.beenToEast = true;
+    }
+
+    public boolean hasBeenToEast() {
+        return this.beenToEast;
     }
 
     public void setSouthConnection(Rooms southConnection){
