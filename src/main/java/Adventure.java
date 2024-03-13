@@ -49,4 +49,12 @@ public class Adventure {
     public void hasBeenInRoom(){
         newPlayer.hasPlayerBeenInRoom();
     }
+
+    public String eatFood(String foodName) {
+        return newPlayer.eatFood(foodName);
+    }
+
+    public int getCurrentPlayerHealth() {
+        return newPlayer.getHealth();
+    }
 }

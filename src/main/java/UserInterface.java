@@ -38,6 +38,8 @@ public class UserInterface {
 
         String userInput = "";
 
+
+
         while (!userInput.equalsIgnoreCase("exit")) {
 
             userInput = input.nextLine();
@@ -85,6 +87,25 @@ public class UserInterface {
 
                 case "look", "l":
                     System.out.println(adventure.getCurrentPlayerPosition());
+                    break;
+
+                case "eat":
+                    System.out.println("enter the name of the food item you want to eat");
+                    String userInput3 = input.nextLine();
+                    System.out.println(adventure.eatFood(userInput3));
+                    break;
+
+                case "health":
+
+                    if (adventure.getCurrentPlayerHealth() > 75) {
+                        System.out.println("Health: " + adventure.getCurrentPlayerHealth() + " you are in good health");
+                    } else if (adventure.getCurrentPlayerHealth() > 50) {
+                        System.out.println("Health: " + adventure.getCurrentPlayerHealth() + " decent health, but avoid any unnecessary fighting");
+                    } else if (adventure.getCurrentPlayerHealth() > 25) {
+                        System.out.println("Health: " + adventure.getCurrentPlayerHealth() + " injured, but still standing - consider eating some food");
+                    } else {
+                        System.out.println("Health: " + adventure.getCurrentPlayerHealth() + " Seriously injured, and barely standing");
+                    }
                     break;
 
                 default:

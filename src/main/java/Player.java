@@ -4,10 +4,13 @@ public class Player {
 
     private ArrayList<Items> playerInventory;
     private Rooms playerPosition;
+    private int health;
 
     public Player(Rooms startingRoom) {
         this.playerInventory = new ArrayList<>();
         this.playerPosition = startingRoom;
+        this.health = 100;
+
     }
 
 
@@ -21,6 +24,7 @@ public class Player {
         }
         return "Cannot go this way";
     }
+
     public String movePlayerSouth() {
         if(playerPosition.getSouthConnection() != null) {
             playerPosition = playerPosition.getSouthConnection();
@@ -29,6 +33,7 @@ public class Player {
         }
         return "Cannot go this way";
     }
+
     public String movePlayerEast() {
         if(playerPosition.getEastConnection() != null) {
             playerPosition = playerPosition.getEastConnection();
@@ -37,6 +42,7 @@ public class Player {
         }
         return "Cannot go this way";
     }
+
     public String movePlayerWest() {
         if(playerPosition.getWestConnection() != null) {
             playerPosition = playerPosition.getWestConnection();
@@ -103,8 +109,62 @@ public class Player {
         } return result;
     }
 
+    public String eatFood(String foodName) {
+        ArrayList<Items> playerInventoryCopy = new ArrayList<>(playerInventory);
+        ArrayList<Items> itemsInRoomCopy = new ArrayList<>(playerPosition.getItemsInRoom());
+        if (health < 100) {
+            for (Items item : playerInventoryCopy) {
+                if (item.getItemName().equalsIgnoreCase(foodName)) {
+                    if (item instanceof Food) {
+                        int currenthealth = health;
+                        setHealth(((Food) item).getHealthPoints());
+                        if (health > 100) {
+                            this.health = 100;
 
-}
+                        }
+
+                        playerInventory.remove(item);
+
+                        int gainedHealth = health - currenthealth;
+
+                         return "You've eaten " + item.getItemName() +
+                                "\n you've gained: " + gainedHealth + " health.";
+
+                    }
+                    return item.getItemName() + " is not edible";
+                }
+            }
+            for (Items item : itemsInRoomCopy) {
+                if (item.getItemName().equalsIgnoreCase(foodName)) {
+                    if (item instanceof Food) {
+                        int currenthealth = health;
+                        setHealth(((Food) item).getHealthPoints());
+                        if (health > 100) {
+                            this.health = 100;
+
+                        }
+                        playerPosition.removeIteminRoom(item);
+                        int gainedHealth = health - currenthealth;
+
+                        return "You've eaten " + item.getItemName() +
+                                "\n you've gained: " + Math.abs(gainedHealth) + " health.";
+
+                    } return item.getItemName() + " is not edible";
+                }
+            }
+        }
+        return "Cannot eat a non-existing item." ;
+    }
+
+        public int getHealth() {
+            return health;
+        }
+
+        public void setHealth(int health) {
+        this.health += health;
+        }
+    }
+
 
 
 

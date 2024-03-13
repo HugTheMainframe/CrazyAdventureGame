@@ -90,9 +90,22 @@ public class Maps {
 
         Items item1 = new Items("Rusty Sword", "About as sharp as a butter knife");
         Items item2 = new Items("Moonlight Lantern", "Shines brighter than a thousand suns");
+        Food apple = new Food("Apple", "A red apple", 10);
+        Food banana = new Food("Banana", "a yellow banana", 20);
+        Food bigMac = new Food("Bigmac", "a greasy slobby burger", -10);
+
+
+        room4.addItemToRoom(apple);
+        room4.addItemToRoom(banana);
+        room4.addItemToRoom(bigMac);
 
         room3.addItemToRoom(item1);
         room6.addItemToRoom(item2);
+
+
+
+
+
 
     }
 
