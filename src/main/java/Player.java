@@ -17,37 +17,45 @@ public class Player {
     //                  **** Player movement and location methods ****
 
     public String movePlayerNorth() {
-        if(playerPosition.getNorthConnection() != null) {
+        if(playerPosition.getNorthConnection() != null && !playerPosition.getIsNorthLocked()) {
             playerPosition = playerPosition.getNorthConnection();
             hasPlayerBeenInRoom();
             return getCurrentPlayerPosition();
+        } else if (playerPosition.getNorthConnection() != null && playerPosition.getIsNorthLocked()) {
+            return "Room is locked";
         }
         return "Cannot go this way";
     }
 
     public String movePlayerSouth() {
-        if(playerPosition.getSouthConnection() != null) {
+        if(playerPosition.getSouthConnection() != null && !playerPosition.getIsSouthLocked()) {
             playerPosition = playerPosition.getSouthConnection();
             hasPlayerBeenInRoom();
             return getCurrentPlayerPosition();
+        } else if (playerPosition.getSouthConnection() != null && playerPosition.getIsSouthLocked()) {
+            return "Room is locked";
         }
         return "Cannot go this way";
     }
 
     public String movePlayerEast() {
-        if(playerPosition.getEastConnection() != null) {
+        if(playerPosition.getEastConnection() != null && !playerPosition.getIsEastLocked()) {
             playerPosition = playerPosition.getEastConnection();
             hasPlayerBeenInRoom();
             return getCurrentPlayerPosition();
+        } else if (playerPosition.getEastConnection() != null && playerPosition.getIsEastLocked()) {
+            return "Room is locked";
         }
         return "Cannot go this way";
     }
 
     public String movePlayerWest() {
-        if(playerPosition.getWestConnection() != null) {
+        if(playerPosition.getWestConnection() != null && !playerPosition.getIsWestLocked()) {
             playerPosition = playerPosition.getWestConnection();
             hasPlayerBeenInRoom();
             return getCurrentPlayerPosition();
+        } else if (playerPosition.getWestConnection() != null && playerPosition.getIsWestLocked()) {
+            return "Room is locked";
         }
         return "Cannot go this way";
     }

@@ -1,3 +1,7 @@
+
+import java.util.Random;
+
+
 public class Actor {
     protected int strength;
     protected int dexterity;
@@ -46,6 +50,13 @@ public class Actor {
     public int getHealth() {
         return health;
     }
+
+    public int Rolld20() {
+        Random random = new Random();
+        return random.nextInt(20, 1)+1;
+    }
+
+
 
 
 

@@ -4,12 +4,19 @@ public class Rooms {
 
     private String name;
     private String description;
+
     private Rooms northConnection;
     private Rooms eastConnection;
-    private boolean beenToEast = false;
     private Rooms southConnection;
     private Rooms westConnection;
+
     int hasBeenInRoom;
+
+    private boolean isNorthLocked;
+    private boolean isEastLocked;
+    private boolean isSouthLocked;
+    private boolean isWestLocked;
+
 
     private ArrayList<Items> itemsInRoom;
 
@@ -24,6 +31,12 @@ public class Rooms {
 
         this.itemsInRoom = new ArrayList<>();
         hasBeenInRoom = 0;
+
+        this.isNorthLocked = false;
+        this.isEastLocked = false;
+        this.isSouthLocked = false;
+        this.isWestLocked = false;
+
     }
 
     //Getter and setter methods
@@ -63,13 +76,6 @@ public class Rooms {
         this.eastConnection = eastConnection;
     }
 
-    public void beenToEast() {
-        this.beenToEast = true;
-    }
-
-    public boolean hasBeenToEast() {
-        return this.beenToEast;
-    }
 
     public void setSouthConnection(Rooms southConnection){
         this.southConnection = southConnection;
@@ -77,6 +83,38 @@ public class Rooms {
 
     public void setWestConnection(Rooms westConnection) {
         this.westConnection = westConnection;
+    }
+
+    public void setIsNorthLocked(boolean locked) {
+        this.isNorthLocked = locked;
+    }
+
+    public void setIsSouthLocked(boolean locked) {
+        this.isSouthLocked = locked;
+    }
+
+    public void setIsEastLocked(boolean locked) {
+        this.isEastLocked = locked;
+    }
+
+    public void setIsWestLocked(boolean locked) {
+        this.isWestLocked = locked;
+    }
+
+    public boolean getIsNorthLocked() {
+        return isNorthLocked;
+    }
+
+    public boolean getIsSouthLocked() {
+        return isSouthLocked;
+    }
+
+    public boolean getIsEastLocked() {
+        return isEastLocked;
+    }
+
+    public boolean getIsWestLocked() {
+        return isNorthLocked;
     }
 
 

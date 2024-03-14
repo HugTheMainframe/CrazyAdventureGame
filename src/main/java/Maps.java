@@ -66,6 +66,8 @@ public class Maps {
         room2.setEastConnection(room3);
         room2.setWestConnection(room1);
 
+        room2.setIsEastLocked(true);
+
         room3.setSouthConnection(room6);
         room3.setWestConnection(room2);
 
