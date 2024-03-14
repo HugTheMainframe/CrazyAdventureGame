@@ -20,6 +20,8 @@ public class Player {
         if(playerPosition.getNorthConnection() != null) {
             playerPosition = playerPosition.getNorthConnection();
             hasPlayerBeenInRoom();
+            thereAreRooms();
+
             return getCurrentPlayerPosition();
         }
         return "Cannot go this way";
@@ -29,6 +31,7 @@ public class Player {
         if(playerPosition.getSouthConnection() != null) {
             playerPosition = playerPosition.getSouthConnection();
             hasPlayerBeenInRoom();
+            thereAreRooms();
             return getCurrentPlayerPosition();
         }
         return "Cannot go this way";
@@ -38,6 +41,7 @@ public class Player {
         if(playerPosition.getEastConnection() != null) {
             playerPosition = playerPosition.getEastConnection();
             hasPlayerBeenInRoom();
+            thereAreRooms();
             return getCurrentPlayerPosition();
         }
         return "Cannot go this way";
@@ -47,6 +51,7 @@ public class Player {
         if(playerPosition.getWestConnection() != null) {
             playerPosition = playerPosition.getWestConnection();
             hasPlayerBeenInRoom();
+            thereAreRooms();
             return getCurrentPlayerPosition();
         }
         return "Cannot go this way";
@@ -64,7 +69,24 @@ public class Player {
             playerPosition.setDescription("You have been here.");
         }
         playerPosition.hasBeenInRoom += 1;
+    }
 
+    //method works but design best practice is to be done with this method...
+    public void thereAreRooms(){
+        //skal se om man har været i rummet før og derefter give en besked at man fx har været i rummet ved siden af
+        //så se om hasBeenInRoom, derefter se om playerPosition.getEastConnection og de andre directions er lig med null eller ej
+        if(playerPosition.getEastConnection() != null && playerPosition.getEastConnection().hasBeenInRoom > 0){
+            System.out.println("There are a room to the East");
+        }
+        if(playerPosition.getNorthConnection() != null && playerPosition.getNorthConnection().hasBeenInRoom > 0){
+            System.out.println("There are a room to the North");
+        }
+        if(playerPosition.getSouthConnection() != null && playerPosition.getSouthConnection().hasBeenInRoom > 0) {
+            System.out.println("There are a room to the South");
+        }
+        if(playerPosition.getWestConnection() != null && playerPosition.getWestConnection().hasBeenInRoom > 0){
+            System.out.println("There are a room to the West");
+        }
     }
 
     public String getCurrentPlayerPosition() {

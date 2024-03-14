@@ -6,7 +6,6 @@ public class Rooms {
     private String description;
     private Rooms northConnection;
     private Rooms eastConnection;
-    private boolean beenToEast = false;
     private Rooms southConnection;
     private Rooms westConnection;
     int hasBeenInRoom;
@@ -61,14 +60,6 @@ public class Rooms {
 
     public void setEastConnection(Rooms eastConnection){
         this.eastConnection = eastConnection;
-    }
-
-    public void beenToEast() {
-        this.beenToEast = true;
-    }
-
-    public boolean hasBeenToEast() {
-        return this.beenToEast;
     }
 
     public void setSouthConnection(Rooms southConnection){
