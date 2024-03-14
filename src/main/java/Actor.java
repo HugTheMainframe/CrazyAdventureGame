@@ -10,7 +10,8 @@ public class Actor {
     protected int wisdom;
     protected int charisma;
     protected int health;
-    //protected int stamina;
+
+    //protected int stamina - awaiting implementation
 
     public Actor (int strength, int dexterity, int constitution, int intelligence,
                   int wisdom, int charisma, int health) {
@@ -51,9 +52,41 @@ public class Actor {
         return health;
     }
 
-    public int Rolld20() {
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+
+
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    public void setConstitution(int constitution) {
+        this.constitution = constitution;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
+    public void setCharisma(int charisma) {
+        this.charisma = charisma;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+
+
+    public int rollD20() {
         Random random = new Random();
-        return random.nextInt(20, 1)+1;
+        return random.nextInt(20)+1;
     }
 
 
