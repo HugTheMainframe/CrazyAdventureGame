@@ -97,6 +97,15 @@ public class Player {
         }
     }
 
+//    public void lockUnlockRooms(String keyName){
+//        ArrayList<Items> playerInventoryCopy = new ArrayList<>(playerInventory);
+//        for (Items items : playerInventoryCopy){
+//            if(items.getItemName().equalsIgnoreCase(keyName)){
+//                if(playerPosition.getWestConnection() != null && playerPosition.getIsWestLocked())
+//            }
+//        }
+//    }
+
     public String getCurrentPlayerPosition() {
         return playerPosition.getName() + playerPosition.getDescription() + "\n" + playerPosition.printItemsInRoom(); }
 
@@ -193,6 +202,7 @@ public class Player {
         public void setHealth(int health) {
         this.health += health;
         }
+
     }
 
 

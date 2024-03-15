@@ -93,8 +93,8 @@ public class Rooms {
         this.isSouthLocked = locked;
     }
 
-    public void setIsEastLocked(boolean locked) {
-        this.isEastLocked = locked;
+    public boolean setIsEastLocked(boolean locked) {
+        return this.isEastLocked = locked;
     }
 
     public void setIsWestLocked(boolean locked) {

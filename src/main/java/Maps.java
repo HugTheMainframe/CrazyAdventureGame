@@ -95,20 +95,15 @@ public class Maps {
         Food apple = new Food("Apple", "A red apple", 10);
         Food banana = new Food("Banana", "a yellow banana", 20);
         Food bigMac = new Food("Bigmac", "a greasy slobby burger", -10);
-
+        Items key = new Items("Golden key", "a shiny key(might unlock something)", false);
 
         room4.addItemToRoom(apple);
         room4.addItemToRoom(banana);
         room4.addItemToRoom(bigMac);
+        room1.addItemToRoom(key);
 
         room3.addItemToRoom(item1);
         room6.addItemToRoom(item2);
-
-
-
-
-
-
     }
 
     public Rooms getStartRoom(){
