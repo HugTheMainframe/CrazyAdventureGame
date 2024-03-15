@@ -7,7 +7,7 @@ import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class Music {
-    String filepath = "C:\\Users\\rasmu\\IdeaProjects\\CrazyAdventureGame\\music\\02-ambler.wav";
+    String filepath = "music\\02-ambler.wav";
 
     public Music(){
     }
