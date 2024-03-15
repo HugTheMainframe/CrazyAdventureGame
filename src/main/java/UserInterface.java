@@ -91,14 +91,14 @@ public class UserInterface {
 
                 case "pick up", "pick", "p":
                     System.out.println("Enter the name of the item you would like to pick up");
-                    String newInput = input.nextLine();
-                    System.out.println(adventure.pickUpItem(newInput));
+                    userInput = input.nextLine();
+                    System.out.println(adventure.pickUpItem(userInput));
                     break;
 
                 case "drop", "d", "drop item":
                     System.out.println("enter the name of the item you wish to drop");
-                    String newInput2 = input.nextLine();
-                    System.out.println(adventure.dropItem(newInput2));
+                    userInput = input.nextLine();
+                    System.out.println(adventure.dropItem(userInput));
                     break;
 
                 case "help", "h":
@@ -111,8 +111,8 @@ public class UserInterface {
 
                 case "eat":
                     System.out.println("enter the name of the food item you want to eat");
-                    String userInput3 = input.nextLine();
-                    System.out.println(adventure.eatFood(userInput3));
+                    userInput = input.nextLine();
+                    System.out.println(adventure.eatFood(userInput));
                     break;
 
                 case "health":
@@ -126,6 +126,11 @@ public class UserInterface {
                     } else {
                         System.out.println("Health: " + adventure.getCurrentPlayerHealth() + " Seriously injured, and barely standing");
                     }
+                    break;
+                case "equip", "equip weapon":
+                    System.out.println("Enter the weapon you want equipped: ");
+                    userInput = input.nextLine();
+                    System.out.println(adventure.equipWeapon(userInput));
                     break;
 
                 default:

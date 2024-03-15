@@ -187,12 +187,12 @@ public class Player extends Actor{
         return "Cannot eat a non-existing item." ;
     }
 
-    public String equipedWeapon(String weapon){
+    public String equipWeapon(String weapon){
         ArrayList<Items> playerinventoryCopy = new ArrayList<>(playerInventory);
         for(Items item : playerinventoryCopy){
             if(item.getItemName().equalsIgnoreCase(weapon)){
                 if(item instanceof Weapon){
-                    if(currentWeapon.size() <= 1) {
+                    if(currentWeapon.isEmpty()) {
                         currentWeapon.add(item);
                         playerInventory.remove(item);
                         return "you equipped " + item.getItemName();

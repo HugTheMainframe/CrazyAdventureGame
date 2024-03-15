@@ -27,6 +27,10 @@ public class Adventure {
     }
 
 
+    public String equipWeapon(String weapon){
+        return newPlayer.equipWeapon(weapon);
+    }
+
     public String movePlayerNorth() {
         return newPlayer.movePlayerNorth();
     }
