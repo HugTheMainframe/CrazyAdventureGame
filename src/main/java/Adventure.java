@@ -6,11 +6,26 @@ public class Adventure {
     private Maps map;
 
 
-    public Adventure() {
+    public Adventure(String playerClass) {
         this.map = new Maps();
-        this.newPlayer = new Player(map.getStartRoom());
+        this.newPlayer = createPlayerClass(playerClass, map.getStartRoom());
 
     }
+
+
+    private Player createPlayerClass (String playerClass, Rooms startingRoom){
+        return switch (playerClass) {
+
+            case "WARRIOR" -> new Player(map.getStartRoom(), 15, 10, 13, 8, 10, 11, 100);
+
+            case "ROGUE" -> new Player(map.getStartRoom(), 11, 15, 10, 12, 13, 14, 100);
+
+            case "MAGE" -> new Player(map.getStartRoom(), 8, 10, 9, 16, 15, 13, 100);
+
+            default -> null;
+        };
+    }
+
 
     public String movePlayerNorth() {
         return newPlayer.movePlayerNorth();

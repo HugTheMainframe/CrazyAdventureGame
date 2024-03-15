@@ -21,6 +21,7 @@ public class Rooms {
     private ArrayList<Items> itemsInRoom;
 
     public Rooms(String name, String description){
+
         this.name = name;
         this.description = description;
 
@@ -133,8 +134,6 @@ public class Rooms {
         return  itemsInRoom;
     }
 
-
-
     public String printItemsInRoom() {
         String result = "";
         for(Items items : itemsInRoom ) {
@@ -143,6 +142,13 @@ public class Rooms {
             }
         } return result.toString().trim();
     }
+
+
+
+
+
+
+
 
 
 }

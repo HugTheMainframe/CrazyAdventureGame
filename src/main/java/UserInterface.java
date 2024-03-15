@@ -5,33 +5,53 @@ import java.util.Scanner;
 
 public class UserInterface {
     //Opretter Adventure klasse objekt og Scanner objekt
-    Adventure adventure = new Adventure();
+    //Adventure adventure = new Adventure();
     Scanner input = new Scanner(System.in);
 
     public UserInterface() {
     }
 
-    public void menu()  {
+
+    public void menu() {
         System.out.println("*** Welcome to the Adventure Game! ***\n");
         System.out.println("1. NEW GAME \n2. EXIT");
         int sentinel = 2;
         int userInput = Integer.parseInt(input.nextLine());
 
         while (userInput != sentinel) {
+
             if (userInput < 0 || userInput > 4) {
                 System.out.println("*** Input invalid *** \nPlease enter 1 to start game, 2 to resume game or 3 to exit");
                 userInput = Integer.parseInt(input.nextLine());
+
             } else if (userInput == 1) {
                 System.out.println("Starting new game....\n");
-                startGame();
-                return;
+                printPlayerClassInfo();
+                System.out.println("Enter the name of the class you would like to play...");
+
+                String playerClassChoice = input.nextLine().toUpperCase();
+
+                do {
+                    try {
+                        Adventure adventure = new Adventure(playerClassChoice);
+                        startGame(adventure);
+                        return;
+
+                    } catch (Exception e) {
+                        System.out.println("Invalid input - please choose a class!");
+                        playerClassChoice = input.nextLine().toUpperCase();
+                    }
+                } while (true);
+
             }
-            System.out.println("Exiting....\n");
-        }
+        } System.out.println("Exiting....\n");
     }
 
+
+
+
     //Opretter en startGame metode
-    public void startGame() {
+    public void startGame(Adventure adventure) {
         System.out.println(adventure.getCurrentPlayerPosition());
         adventure.hasBeenInRoom();
         String exit = "Exiting game...";
@@ -121,6 +141,77 @@ public class UserInterface {
                 "\nEnter \"look\" to get room information" +
                 "\nEnter \"exit\" to quit the game");
     }
+
+
+    public void printPlayerClassInfo(){
+        System.out.println("Welcome to the world of adventure! Before you embark on your journey, let's learn about the available player classes:");
+        System.out.println();
+
+        // Warrior class info
+        System.out.println("          _______  _______  _______ _________ _______  _______ \n" +
+                "|\\     /|(  ___  )(  ____ )(  ____ )\\__   __/(  ___  )(  ____ )\n" +
+                "| )   ( || (   ) || (    )|| (    )|   ) (   | (   ) || (    )|\n" +
+                "| | _ | || (___) || (____)|| (____)|   | |   | |   | || (____)|\n" +
+                "| |( )| ||  ___  ||     __)|     __)   | |   | |   | ||     __)\n" +
+                "| || || || (   ) || (\\ (   | (\\ (      | |   | |   | || (\\ (   \n" +
+                "| () () || )   ( || ) \\ \\__| ) \\ \\_____) (___| (___) || ) \\ \\__\n" +
+                "(_______)|/     \\||/   \\__/|/   \\__/\\_______/(_______)|/   \\__/\n" +
+                "                                                               ");
+        System.out.println("Advantages:");
+        System.out.println("- High strength and constitution, making them formidable in close combat.");
+        System.out.println("- Can withstand more damage compared to other classes.");
+        System.out.println();
+        System.out.println("Disadvantages:");
+        System.out.println("- Limited agility and magical abilities.");
+        System.out.println("- Relies heavily on melee combat, making ranged or magical attacks less effective.");
+        System.out.println();
+
+        // Rogue class info
+        System.out.println("_______  _______  _______           _______ \n" +
+                "(  ____ )(  ___  )(  ____ \\|\\     /|(  ____ \\\n" +
+                "| (    )|| (   ) || (    \\/| )   ( || (    \\/\n" +
+                "| (____)|| |   | || |      | |   | || (__    \n" +
+                "|     __)| |   | || | ____ | |   | ||  __)   \n" +
+                "| (\\ (   | |   | || | \\_  )| |   | || (      \n" +
+                "| ) \\ \\__| (___) || (___) || (___) || (____/\\\n" +
+                "|/   \\__/(_______)(_______)(_______)(_______/\n" +
+                "                                             ");
+        System.out.println("Advantages:");
+        System.out.println("- High dexterity and agility, allowing for quick movements and precise attacks.");
+        System.out.println("- Proficient in stealth and evasion, making them effective in avoiding direct confrontations.");
+        System.out.println();
+        System.out.println("Disadvantages:");
+        System.out.println("- Lower endurance compared to warriors, making them more vulnerable to sustained attacks.");
+        System.out.println("- Lack of heavy armor and durability, making them susceptible to heavy damage.");
+        System.out.println();
+
+        // Mage class info
+        System.out.println(" _______  _______  _______  _______ \n" +
+                "(       )(  ___  )(  ____ \\(  ____ \\\n" +
+                "| () () || (   ) || (    \\/| (    \\/\n" +
+                "| || || || (___) || |      | (__    \n" +
+                "| |(_)| ||  ___  || | ____ |  __)   \n" +
+                "| |   | || (   ) || | \\_  )| (      \n" +
+                "| )   ( || )   ( || (___) || (____/\\\n" +
+                "|/     \\||/     \\|(_______)(_______/\n" +
+                "                                    ");
+        System.out.println("Advantages:");
+        System.out.println("- Proficient in magic spells and ranged attacks, allowing for versatile combat strategies.");
+        System.out.println("- High intelligence and wisdom, enabling powerful spellcasting and strategic thinking.");
+        System.out.println();
+        System.out.println("Disadvantages:");
+        System.out.println("- Lower physical strength and constitution, making them vulnerable in close combat.");
+        System.out.println("- Reliance on mana for spellcasting, requiring careful management of resources during battles.");
+        System.out.println();
+
+        System.out.println("Choose your class wisely, adventurer! Your decision will shape the course of your adventure.");
+    }
+
+
+
+
+
+
 
     public void testingThings() {
         //reading the file

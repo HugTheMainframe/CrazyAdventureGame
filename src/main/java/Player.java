@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends Actor{
 
     private ArrayList<Items> playerInventory;
     private Rooms playerPosition;
-    private int health;
+    //private int health;
 
-    public Player(Rooms startingRoom) {
+    public Player(Rooms startingRoom, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int health) {
+        super(strength, dexterity, constitution, intelligence, wisdom, charisma, 100);
         this.playerInventory = new ArrayList<>();
         this.playerPosition = startingRoom;
-        this.health = 100;
+
 
     }
 
@@ -79,7 +80,7 @@ public class Player {
         playerPosition.hasBeenInRoom += 1;
     }
 
-    //method works but design best practice is to be done with this method...
+    //method works but design best practice is to be done with this method... Might need to move it to Rooms to adhere to SRP
     public void thereAreRooms(){
         //skal se om man har været i rummet før og derefter give en besked at man fx har været i rummet ved siden af
         //så se om hasBeenInRoom, derefter se om playerPosition.getEastConnection og de andre directions er lig med null eller ej
