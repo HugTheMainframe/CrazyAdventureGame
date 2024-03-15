@@ -4,11 +4,13 @@ public class Items {
 
     protected String name;
     protected String description;
+    protected boolean unlocksSomething;
 
 
     public Items(String name, String description) {
         this.name = name;
         this.description = description;
+        this.unlocksSomething = unlocksSomething;
 
     }
 

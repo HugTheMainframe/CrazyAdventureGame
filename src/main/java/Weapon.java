@@ -6,4 +6,15 @@ public abstract class Weapon extends Items {
         super(name, description);
         this.damage = damage;
     }
+
+
+    public abstract void canUse();
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
 }
