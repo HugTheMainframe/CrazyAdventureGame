@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Player extends Actor{
 
     private ArrayList<Items> playerInventory;
+    private ArrayList<Items> currentWeapon;
     private Rooms playerPosition;
     //private int health;
 
@@ -10,7 +11,7 @@ public class Player extends Actor{
         super(strength, dexterity, constitution, intelligence, wisdom, charisma, 100);
         this.playerInventory = new ArrayList<>();
         this.playerPosition = startingRoom;
-
+        this.currentWeapon = new ArrayList<>();
 
     }
 
@@ -98,18 +99,8 @@ public class Player extends Actor{
         }
     }
 
-//    public void lockUnlockRooms(String keyName){
-//        ArrayList<Items> playerInventoryCopy = new ArrayList<>(playerInventory);
-//        for (Items items : playerInventoryCopy){
-//            if(items.getItemName().equalsIgnoreCase(keyName)){
-//                if(playerPosition.getWestConnection() != null && playerPosition.getIsWestLocked())
-//            }
-//        }
-//    }
-
     public String getCurrentPlayerPosition() {
         return playerPosition.getName() + playerPosition.getDescription() + "\n" + playerPosition.printItemsInRoom(); }
-
 
 
     //                  **** Player inventory methods ****
@@ -194,6 +185,26 @@ public class Player extends Actor{
             }
         }
         return "Cannot eat a non-existing item." ;
+    }
+
+    public String equipedWeapon(String weapon){
+        ArrayList<Items> playerinventoryCopy = new ArrayList<>(playerInventory);
+        for(Items item : playerinventoryCopy){
+            if(item.getItemName().equalsIgnoreCase(weapon)){
+                if(item instanceof Weapon){
+                    if(currentWeapon.size() <= 1) {
+                        currentWeapon.add(item);
+                        playerInventory.remove(item);
+                        return "you equipped " + item.getItemName();
+                    } else {
+                        return "you already have a weapon equipped";
+                    }
+                } else {
+                    return item.getItemName() + "is not a weapon, can not equip, you idiot...";
+                }
+            }
+        }
+        return "no such weapon in your inventory!";
     }
 
         public int getHealth() {
