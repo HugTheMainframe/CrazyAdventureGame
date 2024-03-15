@@ -4,7 +4,7 @@ public class MeleeWeapons extends Weapon{
     }
 
     @Override
-    public void canUse() {
+    public void remainingUses() {
 
     }
 }

@@ -4,7 +4,7 @@ public class RangedWeapons extends Weapon {
     }
 
     @Override
-    public void canUse() {
+    public void remainingUses() {
 
     }
 }
