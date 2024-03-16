@@ -3,8 +3,10 @@ public class MeleeWeapons extends Weapon{
         super(name, description, damage);
     }
 
-    @Override
-    public void remainingUses() {
 
+    //Note to self: Consider implementing a durability method for melee weapons.
+    @Override
+    public String remainingUses() {
+    return null;
     }
 }

@@ -76,4 +76,8 @@ public class Adventure {
     public int getCurrentPlayerHealth() {
         return newPlayer.getHealth();
     }
+
+    public String attack() {
+        return newPlayer.attack();
+    }
 }

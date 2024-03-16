@@ -1,10 +1,20 @@
 public class RangedWeapons extends Weapon {
-    public RangedWeapons(String name, String description, int damage) {
+
+    private int ammunition;
+
+    public RangedWeapons(String name, String description, int damage, int ammunition) {
         super(name, description, damage);
+        this.ammunition = ammunition;
     }
 
     @Override
-    public void remainingUses() {
+    public String remainingUses() {
+    return "Remaining uses for " + super.getItemName() + ": " + ammunition;
+    }
 
+    public void consumeAmmunition() {
+        if (ammunition > 0) {
+            ammunition--;
+        }
     }
 }

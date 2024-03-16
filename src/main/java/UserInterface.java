@@ -133,6 +133,10 @@ public class UserInterface {
                     System.out.println(adventure.equipWeapon(userInput));
                     break;
 
+                case "attack":
+                    System.out.println(adventure.attack());
+                    break;
+
                 default:
                     System.out.println("Invalid user input - please type 'help' for a list of commands");
             }

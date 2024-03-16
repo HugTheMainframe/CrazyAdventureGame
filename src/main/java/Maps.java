@@ -96,7 +96,7 @@ public class Maps {
         Food banana = new Food("Banana", "a yellow banana", 20);
         Food bigMac = new Food("Bigmac", "a greasy slobby burger", -10);
         Weapon sword = new MeleeWeapons("Iron Sword", "A rusty iron sword", 5);
-        Weapon bow = new RangedWeapons("Bow Of bounce", "Can't ecape the arrows from this bow", 20);
+        Weapon bow = new RangedWeapons("Bow Of bounce", "Can't ecape the arrows from this bow", 20, 25);
 
         Items key = new Items("Golden key", "A shiny golden key - might unlock something");
 

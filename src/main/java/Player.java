@@ -207,6 +207,41 @@ public class Player extends Actor{
         return "no such weapon in your inventory!";
     }
 
+    public String attack() {
+        String attackResult = "";
+        if (!currentWeapon.isEmpty()) {
+            Items equippedWeapon = currentWeapon.get(0);
+            attackResult = "You attack with " + equippedWeapon.getItemName() + " for " + ((Weapon) equippedWeapon).getDamage() + " damage";
+            ((Weapon) equippedWeapon).remainingUses();
+            return attackResult;
+        } else {
+            return "You don't have any weapon equipped!";
+        }
+
+        //Method out-commented for later implementation if we want armor or dual-wielding.
+//        if (!currentWeapon.isEmpty()) {
+//            for (Items item : currentWeapon) {
+//
+//                attackResult = "You attack with " + item.getItemName() + " for " + ((Weapon) item).getDamage() + " damage";
+//                ((Weapon) item).remainingUses();
+//                return attackResult;
+//            }
+//        } return "You dont have any weapon equipped!";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public int getHealth() {
             return health;
         }
