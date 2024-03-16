@@ -208,13 +208,13 @@ public class Player extends Actor{
     }
 
     public String attack() {
-        String attackResult = "";
-        if (!currentWeapon.isEmpty()) {
+
+
+        if (!(currentWeapon.isEmpty())) {
             Items equippedWeapon = currentWeapon.get(0);
-            attackResult = "You attack with " + equippedWeapon.getItemName() + " for " + ((Weapon) equippedWeapon).getDamage() + " damage";
-            ((Weapon) equippedWeapon).remainingUses();
-            return attackResult;
-        } else {
+            return ((Weapon)equippedWeapon).attack();
+        }
+         else {
             return "You don't have any weapon equipped!";
         }
 

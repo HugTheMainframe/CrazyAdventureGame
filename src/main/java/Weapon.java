@@ -9,6 +9,8 @@ public abstract class Weapon extends Items {
 
     public abstract String remainingUses();
 
+    public abstract String attack();
+
     public int getDamage() {
         return damage;
     }

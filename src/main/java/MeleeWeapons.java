@@ -9,4 +9,9 @@ public class MeleeWeapons extends Weapon{
     public String remainingUses() {
     return null;
     }
+
+    @Override
+    public String attack() {
+        return "You attack with " + super.getItemName() + " for " + super.getDamage() + " damage";
+    }
 }

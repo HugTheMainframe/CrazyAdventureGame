@@ -12,9 +12,14 @@ public class RangedWeapons extends Weapon {
     return "Remaining uses for " + super.getItemName() + ": " + ammunition;
     }
 
-    public void consumeAmmunition() {
+    public String attack() {
         if (ammunition > 0) {
             ammunition--;
+            return "You attack with " + super.getItemName() + " for " + super.getDamage() + " damage";
+        } else {
+            return super.getItemName() + " is empty. Equip a new weapon";
         }
     }
+
+
 }
