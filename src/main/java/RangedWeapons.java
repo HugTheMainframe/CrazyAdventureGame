@@ -8,17 +8,20 @@ public class RangedWeapons extends Weapon {
     }
 
     @Override
-    public String remainingUses() {
-    return "Remaining uses for " + super.getItemName() + ": " + ammunition;
+    public int remainingUses() {
+    return ammunition;
     }
 
-    public String attack() {
-        if (ammunition > 0) {
+    @Override
+    public void useWeapon() {
+        if (ammunition > 0){
             ammunition--;
-            return "You attack with " + super.getItemName() + " for " + super.getDamage() + " damage";
-        } else {
-            return super.getItemName() + " is empty. Equip a new weapon";
         }
+    }
+
+    @Override
+    public String weaponStatus() {
+        return super.getItemName() + " is empty";
     }
 
 

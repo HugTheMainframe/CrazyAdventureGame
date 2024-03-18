@@ -1,7 +1,8 @@
 
 import java.util.Random;
 
-
+//The idea with this super class, is to implement RPG elements and manipulate the player and the world around it.
+//Generally speaking every attack, interaction etc. is determined by a dice roll like old school RPGs.
 public class Actor {
     protected int strength;
     protected int dexterity;
@@ -84,9 +85,14 @@ public class Actor {
 
 
 
-    public int rollD20() {
+    public int rollD20(int skillModifier) {
         Random random = new Random();
-        return random.nextInt(20)+1;
+        return random.nextInt(20)+1 + skillModifier;
+    }
+
+    public boolean performSkillCheck(int skillModifier, int difficultyClass) {
+        int rollResult = rollD20(skillModifier);
+        return rollResult >= difficultyClass;
     }
 
 

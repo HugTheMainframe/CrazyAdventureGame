@@ -5,7 +5,7 @@ public class Player extends Actor{
     private ArrayList<Items> playerInventory;
     private ArrayList<Items> currentWeapon;
     private Rooms playerPosition;
-    //private int health;
+
 
     public Player(Rooms startingRoom, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int health) {
         super(strength, dexterity, constitution, intelligence, wisdom, charisma, 100);
@@ -16,7 +16,7 @@ public class Player extends Actor{
     }
 
 
-    //                  **** Player movement and location methods ****
+    //                  ***** - Player movement and location methods - *****
 
     public String movePlayerNorth() {
         if(playerPosition.getNorthConnection() != null && !playerPosition.getIsNorthLocked()) {
@@ -103,7 +103,7 @@ public class Player extends Actor{
         return playerPosition.getName() + playerPosition.getDescription() + "\n" + playerPosition.printItemsInRoom(); }
 
 
-    //                  **** Player inventory methods ****
+    //                  ***** - Player inventory methods - ****
 
 
     public String pickUpItem(String name){
@@ -207,15 +207,27 @@ public class Player extends Actor{
         return "no such weapon in your inventory!";
     }
 
+
+
+    //                          ***** - Attack Methods - *****
+
+
+    // Consider changing from arrayList to just a single object if we don't implement equipArmor method,
+    //as this is not the best approach for a single equipped item.
     public String attack() {
-
-
+        String attackResult = "";
         if (!(currentWeapon.isEmpty())) {
             Items equippedWeapon = currentWeapon.get(0);
-            return ((Weapon)equippedWeapon).attack();
-        }
-         else {
-            return "You don't have any weapon equipped!";
+            if (((Weapon) equippedWeapon).remainingUses() > 0) {
+                attackResult = "You attack with " + equippedWeapon.getItemName() + " for " + ((Weapon) equippedWeapon).getDamage() + " damage";
+                ((Weapon) equippedWeapon).useWeapon();
+                return attackResult;
+            } else {
+                attackResult = ((Weapon) equippedWeapon).weaponStatus() + " equip a new weapon!";
+                return attackResult;
+            }
+        } else {
+            return "You don´t have any weapon equipped! Equip a weapon to attack.";
         }
 
         //Method out-commented for later implementation if we want armor or dual-wielding.
@@ -228,19 +240,6 @@ public class Player extends Actor{
 //            }
 //        } return "You dont have any weapon equipped!";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public int getHealth() {
             return health;

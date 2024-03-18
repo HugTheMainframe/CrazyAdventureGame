@@ -1,17 +1,29 @@
 public class MeleeWeapons extends Weapon{
-    public MeleeWeapons(String name, String description, int damage) {
+
+    private int durability;
+    public MeleeWeapons(String name, String description, int damage, int durability) {
         super(name, description, damage);
+        this.durability = durability;
     }
 
 
-    //Note to self: Consider implementing a durability method for melee weapons.
+    //Note to self: Consider implementing a durability method for melee weapons (done)
     @Override
-    public String remainingUses() {
-    return null;
+    public int remainingUses() {
+      return durability;
     }
 
     @Override
-    public String attack() {
-        return "You attack with " + super.getItemName() + " for " + super.getDamage() + " damage";
+    public void useWeapon() {
+        if (durability > 0) {
+            durability--;
+        }
     }
+
+    @Override
+    public String weaponStatus() {
+        return super.getItemName() + " is broken";
+    }
+
+
 }
