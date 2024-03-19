@@ -19,6 +19,8 @@ public class Rooms {
 
 
     private ArrayList<Items> itemsInRoom;
+    private ArrayList<Enemy> enemiesInRoom;
+
 
     public Rooms(String name, String description){
 
@@ -31,6 +33,7 @@ public class Rooms {
         westConnection = null;
 
         this.itemsInRoom = new ArrayList<>();
+        this.enemiesInRoom = new ArrayList<>();
         hasBeenInRoom = 0;
 
         this.isNorthLocked = false;
@@ -130,6 +133,20 @@ public class Rooms {
         itemsInRoom.remove(item);
     }
 
+    public void addEnemyToRoom(Enemy enemy) {
+        enemiesInRoom.add(enemy);
+    }
+
+    public void removeEnemyInRoom(Enemy enemy) {
+        enemiesInRoom.remove(enemy);
+    }
+
+    public ArrayList<Enemy> getEnemiesInRoom() {
+        return enemiesInRoom;
+    }
+
+
+
     public ArrayList<Items> getItemsInRoom () {
         return  itemsInRoom;
     }
@@ -140,7 +157,16 @@ public class Rooms {
             if(items != null) {
                 result += items.toString();
             }
-        } return result.toString().trim();
+        } return result.trim();
+    }
+
+    public String printEnemiesInRoom () {
+        String result = "";
+        for (Enemy enemy : enemiesInRoom) {
+            if (enemy != null) {
+                result += enemy.toString();
+            }
+        } return result.trim();
     }
 
 

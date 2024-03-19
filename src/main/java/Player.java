@@ -100,7 +100,8 @@ public class Player extends Actor{
     }
 
     public String getCurrentPlayerPosition() {
-        return playerPosition.getName() + playerPosition.getDescription() + "\n" + playerPosition.printItemsInRoom(); }
+        return playerPosition.getName() + playerPosition.getDescription() + "\n" + playerPosition.printItemsInRoom() +
+        "\n" + playerPosition.printEnemiesInRoom(); }
 
 
     //                  ***** - Player inventory methods - ****

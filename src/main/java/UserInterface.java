@@ -30,7 +30,6 @@ public class UserInterface {
                 System.out.println("Enter the name of the class you would like to play...");
 
                 String playerClassChoice = input.nextLine().toUpperCase();
-
                 do {
                     try {
                         Adventure adventure = new Adventure(playerClassChoice);
@@ -42,13 +41,9 @@ public class UserInterface {
                         playerClassChoice = input.nextLine().toUpperCase();
                     }
                 } while (true);
-
             }
         } System.out.println("Exiting....\n");
     }
-
-
-
 
     //Opretter en startGame metode
     public void startGame(Adventure adventure) {
