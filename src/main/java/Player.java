@@ -3,15 +3,19 @@ import java.util.ArrayList;
 public class Player extends Actor{
 
     private ArrayList<Items> playerInventory;
-    private ArrayList<Items> currentWeapon;
+    //private ArrayList<Items> currentWeapon;
     private Rooms playerPosition;
+    private Items currentWeapon;
+
 
 
     public Player(Rooms startingRoom, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int health) {
         super(strength, dexterity, constitution, intelligence, wisdom, charisma, 100);
+
         this.playerInventory = new ArrayList<>();
         this.playerPosition = startingRoom;
-        this.currentWeapon = new ArrayList<>();
+        this.currentWeapon = null;
+
 
     }
 
@@ -193,9 +197,8 @@ public class Player extends Actor{
         for(Items item : playerinventoryCopy){
             if(item.getItemName().equalsIgnoreCase(weapon)){
                 if(item instanceof Weapon){
-                    if(currentWeapon.isEmpty()) {
-                        currentWeapon.add(item);
-                        playerInventory.remove(item);
+                    if(currentWeapon == null) {
+                        currentWeapon = item;
                         return "you equipped " + item.getItemName();
                     } else {
                         return "you already have a weapon equipped";
@@ -217,19 +220,28 @@ public class Player extends Actor{
     //as this is not the best approach for a single equipped item.
     public String attack() {
         String attackResult = "";
-        if (!(currentWeapon.isEmpty())) {
-            Items equippedWeapon = currentWeapon.get(0);
-            if (((Weapon) equippedWeapon).remainingUses() > 0) {
-                attackResult = "You attack with " + equippedWeapon.getItemName() + " for " + ((Weapon) equippedWeapon).getDamage() + " damage";
-                ((Weapon) equippedWeapon).useWeapon();
-                return attackResult;
-            } else {
-                attackResult = ((Weapon) equippedWeapon).weaponStatus() + " equip a new weapon!";
-                return attackResult;
+        if (!(currentWeapon == null)) {
+            if (((Weapon) currentWeapon).remainingUses() > 0) {
+                for (Enemy enemy : playerPosition.getEnemiesInRoom()) {
+                    if (playerPosition.getEnemiesInRoom() != null) {
+                        enemy.hit(currentWeapon);
+                        ((Weapon) currentWeapon).useWeapon();
+                        int damageToPlayer = enemy.attack();
+                        setHealth(-damageToPlayer);
+                        attackResult = "You attack with " + currentWeapon.getItemName() + " for " + ((Weapon) currentWeapon).getDamage() + " damage";
+                        return attackResult;
+                    }
+
+                }
+                return "You attack nothing";
             }
-        } else {
-            return "You don´t have any weapon equipped! Equip a weapon to attack.";
+            attackResult = ((Weapon) currentWeapon).weaponStatus() + " equip a new weapon!";
+            return attackResult;
+
+        } return "You don´t have any weapon equipped! Equip a weapon to attack.";
+
         }
+
 
         //Method out-commented for later implementation if we want armor or dual-wielding.
 //        if (!currentWeapon.isEmpty()) {
@@ -240,12 +252,16 @@ public class Player extends Actor{
 //                return attackResult;
 //            }
 //        } return "You dont have any weapon equipped!";
-    }
 
+
+
+
+
+@Override
         public int getHealth() {
             return health;
         }
-
+@Override
         public void setHealth(int health) {
         this.health += health;
         }

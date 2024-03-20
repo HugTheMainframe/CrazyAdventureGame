@@ -145,8 +145,6 @@ public class Rooms {
         return enemiesInRoom;
     }
 
-
-
     public ArrayList<Items> getItemsInRoom () {
         return  itemsInRoom;
     }
@@ -168,6 +166,7 @@ public class Rooms {
             }
         } return result.trim();
     }
+
 
 
 

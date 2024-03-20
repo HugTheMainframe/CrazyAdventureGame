@@ -6,6 +6,7 @@ public class Adventure {
     private Maps map;
 
 
+
     public Adventure(String playerClass) {
         this.map = new Maps();
         this.newPlayer = createPlayerClass(playerClass, map.getStartRoom());

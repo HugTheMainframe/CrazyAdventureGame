@@ -95,11 +95,11 @@ public class Maps {
         Food apple = new Food("Apple", "A red apple", 10);
         Food banana = new Food("Banana", "a yellow banana", 20);
         Food bigMac = new Food("Bigmac", "a greasy slobby burger", -10);
-        Weapon sword = new MeleeWeapons("Iron Sword", "A rusty iron sword", 5, 10);
+        Weapon sword = new MeleeWeapons("Iron Sword", "A rusty iron sword", 5, 3);
         Weapon bow = new RangedWeapons("Bow Of bounce", "Can't ecape the arrows from this bow", 20, 10);
         Items key = new Items("Golden key", "A shiny golden key - might unlock something");
-
-        Enemy goblin = new Enemy(10, 12, 12, 4, 5, 5, 5, "Goblin", "A foul creature");
+        Weapon smallKnife = new MeleeWeapons("Small knife", "A small knife", 7, 20);
+        Enemy goblin = new Enemy(10, 12, 12, 4, 5, 5, 50, "Goblin", "A foul creature", smallKnife);
 
 
         room1.addItemToRoom(sword);
@@ -112,6 +112,7 @@ public class Maps {
         room1.addItemToRoom(key);
 
         room2.addEnemyToRoom(goblin);
+
 
         room3.addItemToRoom(item1);
         room6.addItemToRoom(item2);
