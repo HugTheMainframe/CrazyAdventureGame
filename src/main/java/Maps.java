@@ -99,7 +99,7 @@ public class Maps {
         Weapon bow = new RangedWeapons("Bow Of bounce", "Can't ecape the arrows from this bow", 20, 10);
         Items key = new Items("Golden key", "A shiny golden key - might unlock something");
         Weapon smallKnife = new MeleeWeapons("Small knife", "A small knife", 7, 20);
-        Enemy goblin = new Enemy(10, 12, 12, 4, 5, 5, 50, "Goblin", "A foul creature", smallKnife);
+        Enemy goblin = new Enemy(10, 12, 12, 4, 5, 5, 50, "Goblin", "A foul creature", smallKnife, room2);
 
 
         room1.addItemToRoom(sword);
@@ -112,7 +112,6 @@ public class Maps {
         room1.addItemToRoom(key);
 
         room2.addEnemyToRoom(goblin);
-
 
         room3.addItemToRoom(item1);
         room6.addItemToRoom(item2);

@@ -156,16 +156,11 @@ public class Player extends Actor{
                         setHealth(((Food) item).getHealthPoints());
                         if (health > 100) {
                             this.health = 100;
-
                         }
-
                         playerInventory.remove(item);
-
                         int gainedHealth = health - currenthealth;
-
                          return "You've eaten " + item.getItemName() +
                                 "\n you've gained: " + gainedHealth + " health.";
-
                     }
                     return item.getItemName() + " is not edible";
                 }
@@ -177,14 +172,12 @@ public class Player extends Actor{
                         setHealth(((Food) item).getHealthPoints());
                         if (health > 100) {
                             this.health = 100;
-
                         }
                         playerPosition.removeIteminRoom(item);
                         int gainedHealth = health - currenthealth;
 
                         return "You've eaten " + item.getItemName() +
                                 "\n you've gained: " + Math.abs(gainedHealth) + " health.";
-
                     } return item.getItemName() + " is not edible";
                 }
             }
@@ -224,12 +217,12 @@ public class Player extends Actor{
             if (((Weapon) currentWeapon).remainingUses() > 0) {
                 for (Enemy enemy : playerPosition.getEnemiesInRoom()) {
                     if (playerPosition.getEnemiesInRoom() != null) {
-                        enemy.hit(currentWeapon);
+                        String enemyDamage = enemy.hit(currentWeapon, enemy);
                         ((Weapon) currentWeapon).useWeapon();
-                        int damageToPlayer = enemy.attack();
-                        setHealth(-damageToPlayer);
+                        enemy.attack();
+                        setHealth(-enemy.weaponDamage());
                         attackResult = "You attack with " + currentWeapon.getItemName() + " for " + ((Weapon) currentWeapon).getDamage() + " damage";
-                        return attackResult;
+                        return attackResult + " " + enemyDamage ;
                     }
 
                 }

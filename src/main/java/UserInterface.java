@@ -29,18 +29,19 @@ public class UserInterface {
                 printPlayerClassInfo();
                 System.out.println("Enter the name of the class you would like to play...");
 
-                String playerClassChoice = input.nextLine().toUpperCase();
-                do {
-                    try {
-                        Adventure adventure = new Adventure(playerClassChoice);
-                        startGame(adventure);
-                        return;
-
-                    } catch (Exception e) {
-                        System.out.println("Invalid input - please choose a class!");
-                        playerClassChoice = input.nextLine().toUpperCase();
-                    }
-                } while (true);
+                //String playerClassChoice = input.nextLine().toUpperCase();
+                startGame(new Adventure("MAGE"));
+//                do {
+//                    try {
+//                        Adventure adventure = new Adventure(playerClassChoice);
+//                        startGame(adventure);
+//                        return;
+//
+//                    } catch (Exception e) {
+//                        System.out.println("Invalid input - please choose a class!");
+//                        playerClassChoice = input.nextLine().toUpperCase();
+//                    }
+//                } while (true);
             }
         } System.out.println("Exiting....\n");
     }
