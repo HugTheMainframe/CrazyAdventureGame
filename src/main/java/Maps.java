@@ -151,6 +151,7 @@ public class Maps {
         room7.addMusic(soundSeven);
         room8.addMusic(soundEight);
         room9.addMusic(soundNine);
+
         room4.addHiddenItemToRoom(Ashbringer);
 
 

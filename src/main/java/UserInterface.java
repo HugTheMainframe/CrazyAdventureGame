@@ -272,9 +272,6 @@ public class UserInterface {
 //                saveCurrentRoom.close();
 //            }
 
-
-
-
         //System.out.println(adventure.getCurrentPlayerPosition());
         //this will ensure that room1 is visited at start, and are under the sout so the real room1 name and description is printet.
         //adventure.getNewPlayer().getPlayerPosition().getCurrentRoom().hasBeenInRoom++;

@@ -237,7 +237,7 @@ public class Player extends Actor {
                         if (playerHitRoll >= enemy.getArmorClass()) {
                             //We need to store the initial rolls since they are random. If we dont, the displayed values won't correspond to the returned string as it would roll again.
                             int damageDealt = ((Weapon) currentWeapon).getDamage();
-                            enemy.hit(damageDealt, enemy);
+                            enemy.hit(damageDealt);
                             ((Weapon) currentWeapon).useWeapon();
                             int damageTaken = enemy.attack(getArmorClass());
 
@@ -320,7 +320,10 @@ public class Player extends Actor {
             this.health += health;
         }
 
+    public Rooms getPlayerPosition() {
+        return playerPosition;
     }
+}
 
 
 

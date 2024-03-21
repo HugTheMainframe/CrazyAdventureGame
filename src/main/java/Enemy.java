@@ -45,7 +45,7 @@ public class Enemy extends Actor{
     }
 
 
-    public int hit(int damage, Enemy enemy) {
+    public int hit(int damage) {
         int remainingHealth = getHealth() - damage;
         if (remainingHealth <= 0) {
             setHealth(0); // Enemy is defeated
@@ -98,10 +98,6 @@ public class Enemy extends Actor{
         result += "\n" + getName() + " " + getDescription() +
                 "\n" + "Health: " + super.getHealth();
         return result;
-    }
-
-    public void setCurrentRoom(Rooms currentRoom) {
-        this.currentRoom = currentRoom;
     }
 
     public void enemyCorpseItem(){
