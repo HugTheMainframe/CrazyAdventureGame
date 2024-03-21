@@ -15,7 +15,7 @@ public class Adventure {
         this.newPlayer = createPlayerClass(playerClass, map.getStartRoom());
     }
 
-
+//Method for switching between different player objects depending on what class the player chooses.
     private Player createPlayerClass (String playerClass, Rooms startingRoom){
         return switch (playerClass) {
 

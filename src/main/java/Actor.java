@@ -1,8 +1,11 @@
 
 import java.util.Random;
-
+//OBS!
 //The idea with this super class, is to implement RPG elements and manipulate the player and the world around it.
 //Generally speaking every attack, interaction etc. is determined by a dice roll like old school RPGs.
+//OBS!
+//This super class does not have all the super-methods it should have. We have a lot of redundant code in both player and
+//enemy class. Best practice would be to refactor, call the Rooms and Items object in here and move common methods. This way we achieve lower coupling, but we didn't have time to refactor.
 public class Actor {
     protected int strength;
     protected int dexterity;
@@ -28,6 +31,8 @@ public class Actor {
         this.armorClass = armorClass;
     }
 
+
+    //Most of the stats are not used, as we didn't have time to implement all the other modifiers for skillChecks and the logic behind the game mechanics.
     public int getStrength() {
         return strength;
     }

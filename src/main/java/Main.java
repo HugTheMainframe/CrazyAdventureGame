@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         UserInterface ui = new UserInterface();
+
+        //Testing methods - ignore this
 //        String text = "Welcome to the game!!!\n tell me your chararacter!";
 //        for (int i = 0; i < text.length(); i++){
 //            System.out.print(text.charAt(i));

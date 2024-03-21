@@ -31,24 +31,24 @@ public class UserInterface {
                 printPlayerClassInfo();
                 System.out.println("Enter the name of the class you would like to play...");
 
-                //String playerClassChoice = input.nextLine().toUpperCase();
-                startGame(new Adventure("MAGE"));
-//                do {
-//                    try {
-//                        Adventure adventure = new Adventure(playerClassChoice);
-//                        startGame(adventure);
-//                        return;
-//
-//                    } catch (Exception e) {
-//                        System.out.println("Invalid input - please choose a class!");
-//                        playerClassChoice = input.nextLine().toUpperCase();
-//                    }
-//                } while (true);
+                String playerClassChoice = input.nextLine().toUpperCase();
+                //startGame(new Adventure("MAGE"));
+                do {
+                    try {
+                        Adventure adventure = new Adventure(playerClassChoice);
+                        startGame(adventure);
+                        return;
+
+                    } catch (Exception e) {
+                        System.out.println("Invalid input - please choose a class!");
+                        playerClassChoice = input.nextLine().toUpperCase();
+                    }
+                } while (true);
             }
         } System.out.println("Exiting....\n");
     }
 
-    //Opretter en startGame metode
+
     public void startGame(Adventure adventure) {
         System.out.println(adventure.getCurrentPlayerPosition());
         adventure.hasBeenInRoom();
@@ -160,6 +160,17 @@ public class UserInterface {
     public void helpInfo () {
         System.out.println("Enter north, east, south or west to navigate" +
                 "\nEnter \"look\" to get room information" +
+                "\nEnter \"search\" to look for hidden items in a room" +
+                "\nEnter \"attack\" to attack an enemy" +
+                "\nEnter \"pick\" to pick up an item" +
+                "\nEnter \"inv\" to open inventory" +
+                "\nEnter \"drop\" to drop an item" +
+                "\nEnter \"equip\" to equip an item from your inventory" +
+                "\nEnter \"health\" to view the players health status"+
+                "\nEnter \"play\" to play the music in the room" +
+                "\nEnter \"mute\" to mute the music" +
+                "\nEnter \"pause\" to pause the music" +
+                "\nEnter \"reset\" to restart the music" +
                 "\nEnter \"exit\" to quit the game");
     }
 
@@ -235,6 +246,9 @@ public class UserInterface {
 
 
     public void testingThings() {
+
+        //This is a save method, for saving the current room when exiting the program. As of now, not implemented
+
         //reading the file
 //        BufferedReader readCurrentRoom = new BufferedReader(new FileReader("saveOfCurrentRoom.txt"));
 //        //saving the readed text to a string

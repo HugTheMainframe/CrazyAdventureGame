@@ -32,8 +32,9 @@ public class Items {
 
     @Override
     public String toString(){
+
         String result = "";
-        result += "\n" + name + " " + description;
+        result += "\n" + name + ": " + description;
         return result;
     }
 }

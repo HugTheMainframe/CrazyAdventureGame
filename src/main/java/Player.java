@@ -4,7 +4,7 @@ import java.util.Random;
 public class Player extends Actor {
 
     private ArrayList<Items> playerInventory;
-    //private ArrayList<Items> currentWeapon;
+
     private Rooms playerPosition;
     private Items currentWeapon;
 
@@ -97,27 +97,29 @@ public class Player extends Actor {
         playerPosition.hasBeenInRoom += 1;
     }
 
-    //method works but design best practice is to be done with this method... Might need to move it to Rooms to adhere to SRP
+    //method works but design best practice is to be done with this method... Might need to move it to Rooms and make it return a string to adhere to SRP
     public void thereAreRooms() {
         //skal se om man har været i rummet før og derefter give en besked at man fx har været i rummet ved siden af
         //så se om hasBeenInRoom, derefter se om playerPosition.getEastConnection og de andre directions er lig med null eller ej
         if (playerPosition.getEastConnection() != null && playerPosition.getEastConnection().hasBeenInRoom > 0) {
-            System.out.println("There are a room to the East");
+            System.out.println("(There is a room to the East)");
         }
         if (playerPosition.getNorthConnection() != null && playerPosition.getNorthConnection().hasBeenInRoom > 0) {
-            System.out.println("There are a room to the North");
+            System.out.println("(There is a room to the North)");
         }
         if (playerPosition.getSouthConnection() != null && playerPosition.getSouthConnection().hasBeenInRoom > 0) {
-            System.out.println("There are a room to the South");
+            System.out.println("(There is a room to the South)");
         }
         if (playerPosition.getWestConnection() != null && playerPosition.getWestConnection().hasBeenInRoom > 0) {
-            System.out.println("There are a room to the West");
+            System.out.println("(There is a room to the West)");
         }
     }
 
     public String getCurrentPlayerPosition() {
-        return playerPosition.getName() + playerPosition.getDescription() + "\n" + playerPosition.printItemsInRoom() +
-        "\n" + playerPosition.printEnemiesInRoom() + playerPosition.printMusicInRoom(); }
+        return "###########  " + playerPosition.getName() + "  ###########" +
+                "\n" + playerPosition.getDescription() +
+                "\n" + playerPosition.printItemsInRoom() +
+                "\n" + playerPosition.printEnemiesInRoom(); }
 
 
     //                  ***** - Player inventory methods - ****
@@ -150,13 +152,14 @@ public class Player extends Actor {
     }
 
     public String printInventory() {
+        String header = "Your inventory: ";
         String result = "";
         for (Items item : playerInventory) {
             if (item != null) {
                 result += item.toString();
             }
         }
-        return result;
+        return header + "\n" + result;
     }
 
     public String eatFood(String foodName) {
@@ -209,7 +212,8 @@ public class Player extends Actor {
                         currentWeapon = item;
                         return "you equipped " + item.getItemName();
                     } else {
-                        return "you already have a weapon equipped";
+                        currentWeapon = item;
+                        return "you dropped your current weapon in favor of " + item.getItemName();
                     }
                 } else {
                     return item.getItemName() + "is not a weapon, can not equip, you idiot...";
@@ -288,22 +292,28 @@ public class Player extends Actor {
 
 
         public String lookForItemsInRoom () {
+        //check if the room has been searched
             if (!playerPosition.getHasRoomBeenSearched()) {
-                int wisdomModifier = calculateSkillModifier(getWisdom());
-                int difficulty = playerPosition.getPerceptionDifficulty();
+                //Room has not been searched
+                int wisdomModifier = calculateSkillModifier(getWisdom()); //Calculate the skill modifier
+                int difficulty = playerPosition.getPerceptionDifficulty(); //Check the perception difficulty in the room
 
+                //perform the skill check
                 if (super.performSkillCheck(wisdomModifier, difficulty)) {
+                    //if roll succeeded
                     if (playerPosition.hasHiddenItems()) {
+
                         playerPosition.setHasRoomBeenSearched(true);
                         playerPosition.removeHiddenItemsInRoom();
                         return "Your keen senses pay off as once hidden items are now revealed...";
-                    }
+                    }//if the room has no hidden item, but the roll succeeded
+                    playerPosition.setHasRoomBeenSearched(true);
                     return "Your keen senses reveal nothing of use, although the room seems suspicious";
-                }
+                } //if the roll failed
                 playerPosition.setHasRoomBeenSearched(true);
                 return "You search the room thoroughly, but find nothing hidden";
 
-            }
+            } //room has been searched
             return "You have already searched this room thoroughly...";
         }
 
@@ -320,6 +330,8 @@ public class Player extends Actor {
             this.health += health;
         }
 
+
+        //This is a helper-method for implementing music - not best practice, but we didn't have time to refactor, as we wanted it to work before we refactored.
     public Rooms getPlayerPosition() {
         return playerPosition;
     }

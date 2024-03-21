@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Rooms {
 
+    //OBS! Best practice here, would be to make helper classes as the Rooms class is VERY bloated.
+
     private String name;
     private String description;
 
@@ -83,7 +85,7 @@ public class Rooms {
 
 
 
-    //       ***** - getter and setter methods for room connections - *****
+    //                  ***** - getter and setter methods for room connections - *****
 
     public Rooms getNorthConnection() {
         return northConnection;
@@ -203,6 +205,7 @@ public class Rooms {
     }
 
     public String printItemsInRoom() {
+
         String result = "";
         for(Items items : itemsInRoom ) {
             if(items != null) {
@@ -236,6 +239,9 @@ public class Rooms {
         }
         return result;
     }
+
+
+    //                                      ***** - Music methods - *****
     public void playMusicInRoom(){
         for (Music music : musicInRoom){
             if (music != null){
