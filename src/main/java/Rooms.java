@@ -17,12 +17,19 @@ public class Rooms {
     private boolean isSouthLocked;
     private boolean isWestLocked;
 
+    //This attribute is uses to check if the player is able to see items in a room  -  check Player class LookForItemsInRoomMethod for more information.
+    private int perceptionDifficulty;
+
+    private boolean hasRoomBeenSearched;
+
 
     private ArrayList<Items> itemsInRoom;
+
+    private ArrayList<Items> hiddenItems;
     private ArrayList<Enemy> enemiesInRoom;
 
 
-    public Rooms(String name, String description){
+    public Rooms(String name, String description, int perceptionDifficulty){
 
         this.name = name;
         this.description = description;
@@ -34,12 +41,17 @@ public class Rooms {
 
         this.itemsInRoom = new ArrayList<>();
         this.enemiesInRoom = new ArrayList<>();
+        this.hiddenItems = new ArrayList<>();
+
         hasBeenInRoom = 0;
 
         this.isNorthLocked = false;
         this.isEastLocked = false;
         this.isSouthLocked = false;
         this.isWestLocked = false;
+
+        this.perceptionDifficulty = perceptionDifficulty;
+        this.hasRoomBeenSearched = false;
 
     }
 
@@ -55,6 +67,10 @@ public class Rooms {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+
+    //       ***** - getter and setter methods for room connections - *****
 
     public Rooms getNorthConnection() {
         return northConnection;
@@ -89,6 +105,11 @@ public class Rooms {
         this.westConnection = westConnection;
     }
 
+
+
+
+    //                 ***** - Lock connections method, not all are used as we are currently testing - *****
+
     public void setIsNorthLocked(boolean locked) {
         this.isNorthLocked = locked;
     }
@@ -104,6 +125,8 @@ public class Rooms {
     public void setIsWestLocked(boolean locked) {
         this.isWestLocked = locked;
     }
+
+
 
     public boolean getIsNorthLocked() {
         return isNorthLocked;
@@ -122,15 +145,28 @@ public class Rooms {
     }
 
 
-    //Note to self: By adding a addIemToRoom, and removeItemInRoom we encapsulate the logic
-    //and adhere to the Law of Demeter by not directly accessing and modifying the Items class from the Player class.
-    //instead we call upon these methods in the player class when manipulating our player inventory.
+
+
+    //            ***** - Methods for adding enemies and items to rooms and their respective ArrayLists - *****
+
     public void addItemToRoom(Items item) {
         itemsInRoom.add(item);
     }
 
     public void removeIteminRoom(Items item) {
         itemsInRoom.remove(item);
+    }
+
+    public void addHiddenItemToRoom (Items item) {
+        hiddenItems.add(item);
+    }
+
+    public void removeHiddenItemsInRoom () {
+        for (int i = hiddenItems.size() - 1; i >=0; i--) {
+            Items item = hiddenItems.get(i);
+            itemsInRoom.add(item);
+            hiddenItems.remove(i);
+        }
     }
 
     public void addEnemyToRoom(Enemy enemy) {
@@ -149,13 +185,24 @@ public class Rooms {
         return  itemsInRoom;
     }
 
+    public ArrayList<Items> getHiddenItems () {
+        return hiddenItems;
+    }
+
     public String printItemsInRoom() {
         String result = "";
         for(Items items : itemsInRoom ) {
             if(items != null) {
                 result += items.toString();
             }
-        } return result.trim();
+        }
+        if (getHasRoomBeenSearched()) {
+            for (Items item : getHiddenItems()) {
+                result += item;
+            }
+        }
+
+        return result.trim();
     }
 
     public String printEnemiesInRoom () {
@@ -164,16 +211,27 @@ public class Rooms {
             if (enemy != null) {
                 result += enemy.toString();
             }
-        } return result.trim();
+        }
+
+        return result.trim();
     }
 
+    //                 ***** - Perception getter for player - *****
 
 
+    public int getPerceptionDifficulty() {
+        return perceptionDifficulty;
+    }
 
+    public boolean getHasRoomBeenSearched() {
+        return hasRoomBeenSearched;
+    }
 
+    public void setHasRoomBeenSearched(boolean check) {
+        this.hasRoomBeenSearched = check;
+    }
 
-
-
-
-
+    public boolean hasHiddenItems () {
+        return !hiddenItems.isEmpty();
+    }
 }

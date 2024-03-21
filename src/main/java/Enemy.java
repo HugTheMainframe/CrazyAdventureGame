@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.ArrayList;
 
 public class Enemy extends Actor{
@@ -8,16 +9,20 @@ public class Enemy extends Actor{
     private Items equippedWeapon;
     private Rooms currentRoom;
 
+    private Random random;
 
     public Enemy(int strength, int dexterity, int constitution,
-                 int intelligence, int wisdom, int charisma, int health, String name, String description, Items equippedWeapon, Rooms currentRoom) {
+                 int intelligence, int wisdom, int charisma, int health, String name,
+                 String description, Items equippedWeapon, Rooms currentRoom, int armorClass) {
 
-        super(strength, dexterity, constitution, intelligence, wisdom, charisma, health);
+        super(strength, dexterity, constitution, intelligence, wisdom, charisma, health, armorClass);
         this.name = name;
         this.description = description;
         this.enemyInventory = new ArrayList<>();
         this.equippedWeapon = equippedWeapon;
         this.currentRoom = currentRoom;
+
+        this.random = new Random();
 
     }
 
@@ -40,35 +45,29 @@ public class Enemy extends Actor{
     }
 
 
-    public String hit(Items playerWeapon, Enemy enemy) {
-        String result = "";
-        if (getHealth() <= 0) {
-            result = dropItemsUponDeath();
-            enemyCorpsItem();
-            currentRoom.removeEnemyInRoom(enemy);
-            return result;
+    public int hit(int damage, Enemy enemy) {
+        int remainingHealth = getHealth() - damage;
+        if (remainingHealth <= 0) {
+            setHealth(0); // Enemy is defeated
+            enemyCorpseItem();
+            dropItemsUponDeath();
         } else {
-            int damage = ((Weapon) playerWeapon).getDamage();
-            setHealth(getHealth() - damage);
-            result = getName() + " took " + damage + " damage";
-            return result;
+            setHealth(remainingHealth); // Reduce enemy's health by damage
         }
+        return remainingHealth;
     }
 
-    public String attack() {
-        String result = "";
-        if (equippedWeapon != null) {
-            int damage = ((Weapon) equippedWeapon).getDamage();
-            result = getName() + " attacks with " + equippedWeapon.getItemName() + " for " + damage + " damage";
-            return result;
+    public int attack(int playerArmorClass) {
+        if (health <= 0) {
+            return -1;
         }
-            result = getName() + " is dead";
-            return result;
-    }
-
-    public int weaponDamage() {
-        int damage = ((Weapon) equippedWeapon).getDamage();
-        return damage;
+        int enemyHitRoll = random.nextInt(20) + 1;
+        if (enemyHitRoll > playerArmorClass) {
+            int damageDealt = ((Weapon) equippedWeapon).getDamage();
+            return damageDealt;
+        } else {
+            return 0;
+        }
     }
 
 
@@ -80,20 +79,16 @@ public class Enemy extends Actor{
         enemyInventory.add(item);
     }
 
-    public String dropItemsUponDeath () {
-        String droppedItems = "";
+    public void dropItemsUponDeath () {
         ArrayList<Items> enemyInventoryCopy = new ArrayList<>(enemyInventory);
         for (Items item : enemyInventoryCopy) {
             if (enemyInventoryCopy != null) {
                 currentRoom.addItemToRoom(item);
                 enemyInventory.remove(item);
-                droppedItems = getName() + " dropped: " + item.getItemName();
-                return droppedItems;
             }
         }
-        droppedItems = getName() + " dropped " + equippedWeapon.getItemName() + " and nothing else";
         currentRoom.addItemToRoom(equippedWeapon);
-        return droppedItems;
+
     }
 
 
@@ -109,11 +104,13 @@ public class Enemy extends Actor{
         this.currentRoom = currentRoom;
     }
 
-    public void enemyCorpsItem(){
-        for (Enemy enemy : currentRoom.getEnemiesInRoom()){
+    public void enemyCorpseItem(){
+        ArrayList<Enemy> enemiesInRoomCopy = new ArrayList<>(currentRoom.getEnemiesInRoom());
+        for (Enemy enemy : enemiesInRoomCopy){
             String enemyName = enemy.getName();
-            Items corps = new Items(enemyName, " Corpse");
-            currentRoom.addItemToRoom(corps);
+            Items corpse = new Items(enemyName, " Corpse");
+            currentRoom.addItemToRoom(corpse);
+            currentRoom.removeEnemyInRoom(enemy);
         }
     }
 }

@@ -58,7 +58,7 @@ public class UserInterface {
 
         while (!userInput.equalsIgnoreCase("exit")) {
 
-            userInput = input.nextLine();
+            userInput = input.nextLine().trim();
 
             switch (userInput) {
                 case "north", "n", "go north":
@@ -131,6 +131,10 @@ public class UserInterface {
 
                 case "attack":
                     System.out.println(adventure.attack());
+                    break;
+
+                case "search", "search room":
+                    System.out.println(adventure.LookForItems());
                     break;
 
                 default:
