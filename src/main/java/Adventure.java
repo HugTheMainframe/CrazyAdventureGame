@@ -19,11 +19,11 @@ public class Adventure {
     private Player createPlayerClass (String playerClass, Rooms startingRoom){
         return switch (playerClass) {
 
-            case "WARRIOR" -> new Player(map.getStartRoom(), 15, 10, 13, 8, 10, 11, 100);
+            case "WARRIOR" -> new Player(map.getStartRoom(), 15, 10, 13, 8, 10, 11, 100, 14);
 
-            case "ROGUE" -> new Player(map.getStartRoom(), 11, 15, 10, 12, 13, 14, 100);
+            case "ROGUE" -> new Player(map.getStartRoom(), 11, 15, 10, 12, 13, 14, 100, 12);
 
-            case "MAGE" -> new Player(map.getStartRoom(), 8, 10, 9, 16, 15, 13, 100);
+            case "MAGE" -> new Player(map.getStartRoom(), 8, 10, 9, 16, 15, 13, 100, 10);
 
             default -> null;
         };
@@ -85,5 +85,9 @@ public class Adventure {
 
     public String attack() {
         return newPlayer.attack();
+    }
+
+    public String LookForItems () {
+        return newPlayer.lookForItemsInRoom();
     }
 }

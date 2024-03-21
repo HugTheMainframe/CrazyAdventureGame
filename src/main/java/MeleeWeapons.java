@@ -1,13 +1,13 @@
+import java.util.Random;
 public class MeleeWeapons extends Weapon{
-
+    private Random random;
     private int durability;
-    public MeleeWeapons(String name, String description, int damage, int durability) {
-        super(name, description, damage);
+    public MeleeWeapons(String name, String description, int numDice, int diceType, int durability) {
+        super(name, description, numDice, diceType);
         this.durability = durability;
+        this.random = new Random();
     }
 
-
-    //Note to self: Consider implementing a durability method for melee weapons (done)
     @Override
     public int remainingUses() {
       return durability;
@@ -23,6 +23,16 @@ public class MeleeWeapons extends Weapon{
     @Override
     public String weaponStatus() {
         return super.getItemName() + " is broken";
+    }
+
+    @Override
+    public int getDamage() {
+        int rolledDamage = 0;
+        for (int i = 0; i < numDice; i++) {
+            int roll = random.nextInt(diceType) + 1; // Simulate rolling a die
+            rolledDamage += roll;
+        }
+        return rolledDamage;
     }
 
 

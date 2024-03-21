@@ -12,10 +12,12 @@ public class Actor {
     protected int charisma;
     protected int health;
 
+    protected int armorClass;
+
     //protected int stamina - awaiting implementation
 
     public Actor (int strength, int dexterity, int constitution, int intelligence,
-                  int wisdom, int charisma, int health) {
+                  int wisdom, int charisma, int health, int armorClass) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
@@ -23,6 +25,7 @@ public class Actor {
         this.wisdom = wisdom;
         this.charisma = charisma;
         this.health = health;
+        this.armorClass = armorClass;
     }
 
     public int getStrength() {
@@ -53,34 +56,16 @@ public class Actor {
         return health;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-
-
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
-    }
-
-    public void setConstitution(int constitution) {
-        this.constitution = constitution;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
-    public void setWisdom(int wisdom) {
-        this.wisdom = wisdom;
-    }
-
-    public void setCharisma(int charisma) {
-        this.charisma = charisma;
-    }
-
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public int getArmorClass(){
+        return armorClass;
+    }
+
+    public void setArmorClass (int modifier) {
+        this.armorClass += modifier;
     }
 
 
@@ -88,6 +73,10 @@ public class Actor {
     public int rollD20(int skillModifier) {
         Random random = new Random();
         return random.nextInt(20)+1 + skillModifier;
+    }
+
+    public int calculateSkillModifier (int skillValue) {
+        return (skillValue - 10) / 2;
     }
 
     public boolean performSkillCheck(int skillModifier, int difficultyClass) {

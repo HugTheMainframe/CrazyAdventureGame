@@ -56,6 +56,8 @@ public class UserInterface {
         adventure.getMap().getStartRoom().playMusicInRoom();
         String userInput = "";
 
+
+
         while (!userInput.equalsIgnoreCase("exit")) {
 
 
@@ -64,18 +66,22 @@ public class UserInterface {
             switch (userInput) {
                 case "north", "n", "go north":
                     System.out.println(adventure.movePlayerNorth());
+
                     break;
 
                 case "south", "s", "go south":
                     System.out.println(adventure.movePlayerSouth());
+
                     break;
 
                 case "east", "e", "go east":
                     System.out.println(adventure.movePlayerEast());
+
                     break;
 
                 case "west", "w", "go west":
                     System.out.println(adventure.movePlayerWest());
+
                     break;
 
                 case "inv", "inventory", "i":
@@ -141,6 +147,11 @@ public class UserInterface {
                 case "attack":
                     System.out.println(adventure.attack());
                     break;
+
+                case "search", "search room":
+                    System.out.println(adventure.LookForItems());
+                    break;
+
                 default:
                     System.out.println("Invalid user input - please type 'help' for a list of commands");
             }
@@ -268,7 +279,6 @@ public class UserInterface {
         //this will ensure that room1 is visited at start, and are under the sout so the real room1 name and description is printet.
         //adventure.getNewPlayer().getPlayerPosition().getCurrentRoom().hasBeenInRoom++;
     }
-
 }
 
 
