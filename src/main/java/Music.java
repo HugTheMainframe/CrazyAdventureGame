@@ -1,39 +1,86 @@
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.*;
+import java.io.IOException;
+import javax.sound.sampled.*;
 
 public class Music {
-    String filepath = "music"+File.separatorChar+"02-ambler.wav";
+    private Rooms currentRoom;
+    private String filePath;
+    private Clip clip;
+    private File musicPath;
+    private AudioInputStream audioInput;
+    private String name;
 
-    public Music(){
+    public Music(String filePath, Rooms currentRoom, String name) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        this.filePath = filePath;
+        this.currentRoom = currentRoom;
+        this.musicPath = new File(filePath);
+        this.audioInput = AudioSystem.getAudioInputStream(musicPath);
+        this.clip = AudioSystem.getClip();
+        this.name = name;
     }
 
-    public void room1Sound(){
-        PlayMusic(filepath);
+    public void playSounds(){
+        for (Music music : currentRoom.getMusicInRoom()){
+            music.PlayMusic();
+        }
     }
 
-    public static void PlayMusic(String location) {
-
+    public void findClipToStop(){
         try {
-            File musicPath = new File(location);
+            if (clip != null && clip.isOpen()) {
+                clip.stop();
+                clip.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Shit not working!!!");
+        }
+    }
+    public long pauseSound(){
+        try {
+            if(clip != null && clip.isOpen()){
+                long clipTime = clip.getMicrosecondPosition();
+                clip.stop();
+                return clipTime;
+            }
+        }catch (Exception e){
+            System.out.println("Shit not working!!!");
+        }
+        return 0;
+    }
 
+    public void resumeSound(){
+        try {
+            if (clip != null && clip.isOpen()){
+                long clipTime = pauseSound();
+                clip.setMicrosecondPosition(clipTime);
+                clip.start();
+            }
+        }catch (Exception e){
+            System.out.println("Shit not working!!!");
+        }
+    }
+
+    public void PlayMusic() {
+        try {
             if (musicPath.exists()){
-            AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInput);
-            clip.start();
-
+                if(!(clip.isOpen())) {
+                    audioInput = AudioSystem.getAudioInputStream(musicPath);
+                    clip = AudioSystem.getClip();
+                    clip.open(audioInput);
+                    clip.start();
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                }else {
+                    findClipToStop();
+                    playSounds();
+                }
             } else {
                 System.out.println("cant find path");
             }
         } catch (Exception e){
-            System.out.println(e);
         }
     }
 
-
+    public String getName() {
+        return name;
+    }
 }

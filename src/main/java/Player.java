@@ -19,15 +19,19 @@ public class Player extends Actor{
 
     }
 
-
+    public Rooms getPlayerPosition() {
+        return playerPosition;
+    }
     //                  ***** - Player movement and location methods - *****
 
     public String movePlayerNorth() {
         if(playerPosition.getNorthConnection() != null && !playerPosition.getIsNorthLocked()) {
+            playerPosition.stopMusicInRoom();
             playerPosition = playerPosition.getNorthConnection();
             hasPlayerBeenInRoom();
             thereAreRooms();
-
+            playerPosition.stopMusicInRoom();
+            playerPosition.playMusicInRoom();
             return getCurrentPlayerPosition();
         } else if (playerPosition.getNorthConnection() != null && playerPosition.getIsNorthLocked()) {
             return "Room is locked";
@@ -37,9 +41,11 @@ public class Player extends Actor{
 
     public String movePlayerSouth() {
         if(playerPosition.getSouthConnection() != null && !playerPosition.getIsSouthLocked()) {
+            playerPosition.stopMusicInRoom();
             playerPosition = playerPosition.getSouthConnection();
             hasPlayerBeenInRoom();
             thereAreRooms();
+            playerPosition.playMusicInRoom();
             return getCurrentPlayerPosition();
         } else if (playerPosition.getSouthConnection() != null && playerPosition.getIsSouthLocked()) {
             return "Room is locked";
@@ -49,9 +55,11 @@ public class Player extends Actor{
 
     public String movePlayerEast() {
         if(playerPosition.getEastConnection() != null && !playerPosition.getIsEastLocked()) {
+            playerPosition.stopMusicInRoom();
             playerPosition = playerPosition.getEastConnection();
             hasPlayerBeenInRoom();
             thereAreRooms();
+            playerPosition.playMusicInRoom();
             return getCurrentPlayerPosition();
         } else if (playerPosition.getEastConnection() != null && playerPosition.getIsEastLocked()) {
             return "Room is locked";
@@ -61,9 +69,11 @@ public class Player extends Actor{
 
     public String movePlayerWest() {
         if(playerPosition.getWestConnection() != null && !playerPosition.getIsWestLocked()) {
+            playerPosition.stopMusicInRoom();
             playerPosition = playerPosition.getWestConnection();
             hasPlayerBeenInRoom();
             thereAreRooms();
+            playerPosition.playMusicInRoom();
             return getCurrentPlayerPosition();
         } else if (playerPosition.getWestConnection() != null && playerPosition.getIsWestLocked()) {
             return "Room is locked";
@@ -105,7 +115,7 @@ public class Player extends Actor{
 
     public String getCurrentPlayerPosition() {
         return playerPosition.getName() + playerPosition.getDescription() + "\n" + playerPosition.printItemsInRoom() +
-        "\n" + playerPosition.printEnemiesInRoom(); }
+        "\n" + playerPosition.printEnemiesInRoom() + playerPosition.printMusicInRoom(); }
 
 
     //                  ***** - Player inventory methods - ****
@@ -235,6 +245,13 @@ public class Player extends Actor{
 
         }
 
+//        public void playCurrentMusicInRoom(){
+//        for (Music music : playerPosition.getMusicInRoom()){
+//            if(playerPosition.getMusicInRoom() != null){
+//                music.playSounds(playerPosition.);
+//            }
+//        }
+//        }
 
         //Method out-commented for later implementation if we want armor or dual-wielding.
 //        if (!currentWeapon.isEmpty()) {

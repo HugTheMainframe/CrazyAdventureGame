@@ -1,15 +1,19 @@
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Maps {
     private Rooms currentRoom;
 
 
-    public Maps() {
+    public Maps() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         buildMap();
 
     }
 
-    public void buildMap() {
+    public void buildMap() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
        Rooms room1 = new Rooms("\"Dungeon\": ", "Entering the dungeon, the air grows heavy with the stench of decay.\n" +
                 "Torches flicker dimly, casting eerie shadows on the cold stone walls.\n" +
                 "I can hear the distant echoes of tortured souls, imprisoned within its depths.\n" +
@@ -101,6 +105,16 @@ public class Maps {
         Weapon smallKnife = new MeleeWeapons("Small knife", "A small knife", 7, 20);
         Enemy goblin = new Enemy(10, 12, 12, 4, 5, 5, 50, "Goblin", "A foul creature", smallKnife, room2);
 
+        Music soundOne = new Music("music" + File.separatorChar + "Undertale OST 023 - Shop.wav", room1, "Shop");
+        Music soundTwo = new Music("music" + File.separatorChar + "sampleOne.wav", room2, "San II");
+        Music soundThree = new Music("music" + File.separatorChar + "megalovia.wav", room3, "Megalovia");
+        Music soundFour = new Music("music" + File.separatorChar + "Undertale OST 001 - Once Upon A Time.wav", room4, "Once Upon A Time");
+        Music soundFive = new Music("music" + File.separatorChar + "rollespil.wav", room5, "Rollespil");
+        Music soundSix = new Music("music" + File.separatorChar + "Nintendo Wii - Mii Channel Theme.wav", room6, "Wii Theme");
+        Music soundSeven = new Music("music" + File.separatorChar + "The Imperial March.wav", room7, "March");
+        Music soundEight = new Music("music" + File.separatorChar + "Super Mario Bros. Theme Song.wav", room8, "Mario");
+        Music soundNine = new Music("music" + File.separatorChar + "Pirates Of The Caribbean Theme Song.wav", room9, "Pirates");
+
 
         room1.addItemToRoom(sword);
         room1.addItemToRoom(bow);
@@ -116,11 +130,15 @@ public class Maps {
         room3.addItemToRoom(item1);
         room6.addItemToRoom(item2);
 
-
-
-
-
-
+        room1.addMusic(soundOne);
+        room2.addMusic(soundTwo);
+        room3.addMusic(soundThree);
+        room4.addMusic(soundFour);
+        room5.addMusic(soundFive);
+        room6.addMusic(soundSix);
+        room7.addMusic(soundSeven);
+        room8.addMusic(soundEight);
+        room9.addMusic(soundNine);
     }
 
     public Rooms getStartRoom(){

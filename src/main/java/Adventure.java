@@ -1,3 +1,6 @@
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Adventure {
@@ -7,10 +10,9 @@ public class Adventure {
 
 
 
-    public Adventure(String playerClass) {
+    public Adventure(String playerClass) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         this.map = new Maps();
         this.newPlayer = createPlayerClass(playerClass, map.getStartRoom());
-
     }
 
 
@@ -27,6 +29,9 @@ public class Adventure {
         };
     }
 
+    public Maps getMap() {
+        return map;
+    }
 
     public String equipWeapon(String weapon){
         return newPlayer.equipWeapon(weapon);

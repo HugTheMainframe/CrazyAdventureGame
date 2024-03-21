@@ -17,10 +17,9 @@ public class Rooms {
     private boolean isSouthLocked;
     private boolean isWestLocked;
 
-
     private ArrayList<Items> itemsInRoom;
     private ArrayList<Enemy> enemiesInRoom;
-
+    private ArrayList<Music> musicInRoom;
 
     public Rooms(String name, String description){
 
@@ -31,7 +30,7 @@ public class Rooms {
         eastConnection = null;
         southConnection = null;
         westConnection = null;
-
+        this.musicInRoom = new ArrayList<>();
         this.itemsInRoom = new ArrayList<>();
         this.enemiesInRoom = new ArrayList<>();
         hasBeenInRoom = 0;
@@ -40,7 +39,18 @@ public class Rooms {
         this.isEastLocked = false;
         this.isSouthLocked = false;
         this.isWestLocked = false;
+    }
 
+    public ArrayList<Music> getMusicInRoom() {
+        return musicInRoom;
+    }
+
+    public void addMusic(Music music) {
+        musicInRoom.add(music);
+    }
+
+    public void removeMusic(Music music) {
+        musicInRoom.remove(music);
     }
 
     //Getter and setter methods
@@ -164,16 +174,40 @@ public class Rooms {
             if (enemy != null) {
                 result += enemy.toString();
             }
-        } return result.trim();
+        } return result.trim() + "\n";
     }
 
+    public String printMusicInRoom() {
+        String result = "";
+        for (Music music : musicInRoom) {
+            if (music != null) {
+                result += music.getName();
+            }
+        }
+        return result;
+    }
+    public void playMusicInRoom(){
+        for (Music music : musicInRoom){
+            if (music != null){
+                music.playSounds();
+            }
+        }
+    }
 
+    public void stopMusicInRoom(){
+        for(Music music : musicInRoom){
+                music.findClipToStop();
+            }
+        }
+    public void pauseMusic(){
+        for (Music music : musicInRoom){
+            music.pauseSound();
+        }
+    }
 
-
-
-
-
-
-
-
+    public void resumeMusic(){
+        for (Music music : musicInRoom){
+            music.resumeSound();
+        }
+    }
 }

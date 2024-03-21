@@ -1,4 +1,6 @@
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,7 +14,7 @@ public class UserInterface {
     }
 
 
-    public void menu() {
+    public void menu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         System.out.println("*** Welcome to the Adventure Game! ***\n");
         System.out.println("1. NEW GAME \n2. EXIT");
         int sentinel = 2;
@@ -51,34 +53,29 @@ public class UserInterface {
         System.out.println(adventure.getCurrentPlayerPosition());
         adventure.hasBeenInRoom();
         String exit = "Exiting game...";
-
+        adventure.getMap().getStartRoom().playMusicInRoom();
         String userInput = "";
 
-
-
         while (!userInput.equalsIgnoreCase("exit")) {
+
 
             userInput = input.nextLine();
 
             switch (userInput) {
                 case "north", "n", "go north":
                     System.out.println(adventure.movePlayerNorth());
-
                     break;
 
                 case "south", "s", "go south":
                     System.out.println(adventure.movePlayerSouth());
-
                     break;
 
                 case "east", "e", "go east":
                     System.out.println(adventure.movePlayerEast());
-
                     break;
 
                 case "west", "w", "go west":
                     System.out.println(adventure.movePlayerWest());
-
                     break;
 
                 case "inv", "inventory", "i":
@@ -96,7 +93,22 @@ public class UserInterface {
                     userInput = input.nextLine();
                     System.out.println(adventure.dropItem(userInput));
                     break;
-
+                case "stop":
+                    //method to stop the music complet
+                    adventure.getNewPlayer().getPlayerPosition().stopMusicInRoom();
+                    break;
+                case "reset":
+                    //method to reset the music to start
+                    adventure.getNewPlayer().getPlayerPosition().playMusicInRoom();
+                    break;
+                case "pause":
+                    //method to pause the music
+                    adventure.getNewPlayer().getPlayerPosition().pauseMusic();
+                    break;
+                case "play":
+                    //method to resume the music
+                    adventure.getNewPlayer().getPlayerPosition().resumeMusic();
+                    break;
                 case "help", "h":
                     helpInfo();
                     break;
