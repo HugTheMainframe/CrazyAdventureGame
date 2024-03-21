@@ -93,7 +93,7 @@ public class UserInterface {
                     userInput = input.nextLine();
                     System.out.println(adventure.dropItem(userInput));
                     break;
-                case "stop":
+                case "mute":
                     //method to stop the music complet
                     adventure.getNewPlayer().getPlayerPosition().stopMusicInRoom();
                     break;
@@ -122,9 +122,7 @@ public class UserInterface {
                     userInput = input.nextLine();
                     System.out.println(adventure.eatFood(userInput));
                     break;
-
                 case "health":
-
                     if (adventure.getCurrentPlayerHealth() > 75) {
                         System.out.println("Health: " + adventure.getCurrentPlayerHealth() + " you are in good health");
                     } else if (adventure.getCurrentPlayerHealth() > 50) {
@@ -140,18 +138,13 @@ public class UserInterface {
                     userInput = input.nextLine();
                     System.out.println(adventure.equipWeapon(userInput));
                     break;
-
                 case "attack":
                     System.out.println(adventure.attack());
                     break;
-
                 default:
                     System.out.println("Invalid user input - please type 'help' for a list of commands");
             }
-
-
         }
-
     }
     public void helpInfo () {
         System.out.println("Enter north, east, south or west to navigate" +
@@ -275,6 +268,7 @@ public class UserInterface {
         //this will ensure that room1 is visited at start, and are under the sout so the real room1 name and description is printet.
         //adventure.getNewPlayer().getPlayerPosition().getCurrentRoom().hasBeenInRoom++;
     }
+
 }
 
 
